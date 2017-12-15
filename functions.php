@@ -240,9 +240,6 @@ function random_comic(){
     return $permalink;
 }
 
-
-
-
 //Add menu support
 function register_my_menus() {
 	register_nav_menus(
@@ -253,12 +250,6 @@ function register_my_menus() {
 	);
 }
 
-//hide menu bar because it's ugly
-function mdw_hide_admin_bar() {
-     show_admin_bar(false);
- }
-
-add_action('set_current_user', 'mdw_hide_admin_bar');
 add_action('init','random_add_rewrite');
 add_action('wp_enqueue_scripts', 'theme_styles');
 add_action('wp_enqueue_scripts', 'theme_js');
