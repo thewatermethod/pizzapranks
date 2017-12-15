@@ -1,0 +1,217 @@
+/*
+Theme Name: Pizza Pranks
+Theme URI: www.twilitgrotto.com/pizzapranks
+Description: Custom Webcomic WP site
+Author: Matt Bevilacqua
+Author URI: http://twilitgrotto.com
+Version: 2.0
+Tags: webcomic, responsive, pizza, pranks
+
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+*/
+
+/* FONTS */
+
+@font-face {
+  font-family: Crystal-Lightning;
+  src: url('fonts/crystallightning.woff') format('woff'), url('fonts/crystallightning.ttf') format('truetype');
+}
+/*GENERAL PAGE STYLES*/
+
+body {
+  font-family: Lato;
+  font-size: 1.25em;
+  background: url("img/iso.svg");
+  background-repeat: no-repeat;
+  background-size: 25% auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "VT323";
+}
+.container-fluid {
+  width: 100%;
+}
+textarea {
+  max-width: 90%;
+}
+/* HEADER */
+
+.shimmer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.1);
+  background: -webkit-gradient(linear, left top, right top, from(#222222), to(#222222), color-stop(0.5, yellow));
+  background: -moz-gradient(linear, left top, right top, from(#222222), to(#222222), color-stop(0.5, yellow));
+  background: gradient(linear, left top, right top, from(#222222), to(#222222), color-stop(0.5, yellow));
+  -webkit-background-size: 125px 100%;
+  -moz-background-size: 125px 100%;
+  background-size: 125px 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-animation-name: shimmer;
+  -moz-animation-name: shimmer;
+  animation-name: shimmer;
+  -webkit-animation-duration: 6s;
+  -moz-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-color: #222222;
+}
+@-moz-keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@-webkit-keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@-o-keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+header {
+  position: sticky;
+}
+header #logo h1 {
+  font-weight: bold;
+  font-size: 3.4em;
+  font-family: "Crystal-Lightning";
+}
+header .home-icon {
+  float: left;
+  position: absolute;
+  left: 25px;
+}
+header .nav {
+  margin-left: 100px;
+  margin-top: 0;
+  font-family: "VT323";
+}
+/* HOMEPAGE LAYOUTS*/
+
+.post-type {
+  text-transform: uppercase;
+  color: #874ced;
+  font-style: italic;
+}
+.imgwrapper {
+  border: 1px solid lightgrey;
+  background: white;
+  padding: 10px;
+  max-width: 100%;
+  height: 320px;
+  text-align: center;
+}
+.imgwrapper img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+.smallPromo {
+  text-align: center;
+  color: #686868;
+  background: #681ee8;
+  padding-bottom: 10px;
+}
+.smallPromo h1 {
+  background-color: #5915cd;
+  color: white;
+}
+.smallPromo img {
+  border-radius: 50%;
+  width: 300px;
+}
+.smallPromo a {
+  color: white;
+}
+.notice {
+  text-align: center;
+}
+/* FOOTER */
+
+footer {
+  background: #170535;
+  color: white;
+  text-align: center;
+}
+footer table {
+  margin: auto;
+}
+footer ul {
+  list-style: none;
+}
+footer ul a {
+  color: white;
+}
+footer ul a:hover {
+  color: #fff300;
+  text-decoration: underline;
+}
+/* Single Post Image Fix*/
+
+.single-post img {
+  max-width: 100%;
+  height: auto;
+}
+/* Change font for book */
+
+.single-book {
+  font-family: "Oran";
+}
+.single-book p {
+  padding: .25em;
+}
+/* RESPONSIVE BITS*/
+
+@media (max-width: 768px) {
+  .ad {
+    display: none;
+  }
+  header .home-icon {
+    display: none;
+  }
+  header .nav {
+    margin-left: 0px;
+  }
+  #header-nav-menu li {
+    width: 100%;
+  }
+  .imgwrapper {
+    height: auto;
+  }
+  .imgwrapper img {
+    max-height: 320px;
+  }
+}
