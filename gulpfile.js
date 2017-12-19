@@ -18,7 +18,9 @@ var gulp = require('gulp'),
     csslint = require('gulp-csslint'),
     cssnano = require('cssnano'),
     discardDuplicates = require('postcss-discard-duplicates'), 
-	postcss = require('gulp-postcss');
+	postcss = require('gulp-postcss'),
+	transpile  = require('gulp-es6-module-transpiler'),
+	babel = require('gulp-babel');
 	
 gulp.task( 'compile-bootstrap', function() { 
 	return gulp.src('node_modules/bootstrap/scss/bootstrap.scss')
@@ -44,18 +46,21 @@ gulp.task( 'build-sass', function(){
 });
 
 
-// this task minifies the javascript
-gulp.task('concat-js', function() {
- 	return gulp.src(['!core/js/pcLists.js','!core/js/pcListsAdminScripts.js','!core/js/vue.min.js','!core/js/compiled.js','!core/js/customizer.js','!core/js/global-admin.js','core/js/plugins.js','core/js/*.js', 'core/widgets/pc-instagram/core/js/instafeed.min.js', 'core/widgets/pc-instagram/core/js/pc-instagram.js'])
-    	.pipe( concat( 'compiled.js' ) )
-		.pipe(gulp.dest('core/js/'))
+gulp.task('concat-js', function(cb) { 
+	pump([
+		gulp.src(['js/masonry.pkgd.min.js', 'js/main.js']),
+		concat('compiled.js'),
+		uglify(),
+		gulp.dest('js/') 
+	], 
+	cb
+	);
 });
 
-gulp.task('minify-js', function (cb) {
+gulp.task('vendor-js', function (cb) {
  	pump([
-    	gulp.src(['core/js/compiled.js']),
-        uglify(),
-        gulp.dest('core/js/')
+		gulp.src(['node_modules/jquery/dist/jquery.slim.min.js','node_modules/popper.js/dist/umd/popper.min.js','node_modules/bootstrap/dist/js/bootstrap.js']),
+        gulp.dest('js/')
     ],
     cb
   );
@@ -66,8 +71,8 @@ gulp.task('compile', function(){
 	runSequence(
 		'compile-bootstrap',
 		'build-sass',
-		'concat-js',
-		'minify-js'
+		'concat-js',		
+		'vendor-js'
 	);
 });
 

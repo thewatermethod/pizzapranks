@@ -1,0 +1,56 @@
+/* TYPOGRAPHY */
+
+body.pizzapranks{    
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-size: 1em;
+
+    h2,h3,h4,h5,h6{
+        font-family: 'Lato', sans-serif;
+    }
+}
+
+h1, .site-title {
+    font-family: 'VT323', monospace;
+    font-size: 2.5rem;
+}
+
+nav ul li {
+    font-family: 'VT323', monospace;
+}
+
+/* LINKS */
+
+body.pizzapranks{   
+    a, a:visited {
+        color: black;
+        border-bottom: 1px dashed #170535;
+    }
+
+    a:hover {
+        color: #007bff;
+        text-decoration: none;
+        border-bottom: 1px solid #007bff;
+    }
+
+    a:active {
+        outline: 2px dotted orange;
+    }
+
+    a.btn.btn-dark {        
+        border-bottom: 2px solid transparent;
+        color: white;
+        display: block;
+        margin: auto;
+        
+        @media( min-width: 950px ){
+            width: 50%;
+        }
+
+        &:hover {            
+            border-bottom: 2px solid #007bff;
+            color: #007bff;
+        }
+    }
+
+}

@@ -1,24 +1,8 @@
 
-/* FONTS */
-
-@font-face{
-	font-family: Crystal-Lightning;
-	src: url('fonts/crystallightning.woff') format('woff'), 
-		 url('fonts/crystallightning.ttf') format('truetype'); 
-  }
   
   /*GENERAL PAGE STYLES*/
   
-  body{
-	  font-family: Lato;
-	  font-size: 1.25em;
-	  background: url("img/iso.svg");
-	  background-repeat: no-repeat;
-	  background-size: 25% auto;
-  }
-  h1,h2,h3,h4,h5,h6{
-	  font-family: "VT323";
-  }
+
   .container-fluid{
 	  width: 100%;
   }
@@ -26,22 +10,7 @@
 	  max-width: 90%;
   }
   
-  /* HEADER */
-  
-  @import url("shimmer.less");
-  header{
-	  position: sticky;
-	  #logo{
-		  h1{ 
-			  font-weight: bold;
-			  font-size: 3.4em; 
-			  font-family: "Crystal-Lightning"; 
-		  }
-	  }
-	  .home-icon{ float: left; position: absolute; left: 25px;}
-	  .nav{ margin-left: 100px; margin-top: 0; font-family: "VT323";}
-  }
-  
+    
   
   /* HOMEPAGE LAYOUTS*/
   
@@ -154,63 +123,3 @@
 	  }
 	  
   }
-  
-  .shimmer {
-	text-align: center;
-	color: rgba(255,255,255,0.1);
-	background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, yellow));
-	background: -moz-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, yellow));
-	background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, yellow));
-	-webkit-background-size: 125px 100%;
-	-moz-background-size: 125px 100%;
-	background-size: 125px 100%;
-	-webkit-background-clip: text;
-	-moz-background-clip: text;
-	background-clip: text;
-	-webkit-animation-name: shimmer;
-	-moz-animation-name: shimmer;
-	animation-name: shimmer;
-	-webkit-animation-duration: 6s;
-	-moz-animation-duration: 6s;
-	animation-duration: 6s;
-	-webkit-animation-iteration-count: infinite;
-	-moz-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	background-color: #222;
-  }
-  @-moz-keyframes shimmer {
-	0% {
-	  background-position: top left;
-	}
-	100% {
-	  background-position: top right;
-	}
-  }
-  @-webkit-keyframes shimmer {
-	0% {
-	  background-position: top left;
-	}
-	100% {
-	  background-position: top right;
-	}
-  }
-  @-o-keyframes shimmer {
-	0% {
-	  background-position: top left;
-	}
-	100% {
-	  background-position: top right;
-	}
-  }
-  @keyframes shimmer {
-	0% {
-	  background-position: top left;
-	}
-	100% {
-	  background-position: top right;
-	}
-  }
-  
-  

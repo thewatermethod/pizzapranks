@@ -1,89 +1,61 @@
 <?php
-	$home = false;
-	get_header();
-?>	
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ */
 
-<?php $count = 0; ?>
-<?php if ( have_posts() ) :?>
+get_header(); ?>
 
-<div class="articles">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
 
-<?php while ( have_posts() ) : the_post(); ?>
+		<?php
+		if ( have_posts() ) :
 
-	<?php if($count === 0): ?>
-	<div class="row first-row">
-		<article class="col-md-6 col-sm-12">
-			<a href="<?php the_permalink(); ?>">
-			<div class="imgwrapper">
+			if ( is_home() && ! is_front_page() ) : ?>
+				<header>
+					<h1 class="page-title screen-reader-text"><?php the_title(); ?></h1>
+				</header>
+
 			<?php
-			if ( has_post_thumbnail() ) {
-				the_post_thumbnail();
-			} else {
-			    echo '<img src="img/stub1.png" />';			
-			}
-			?>
-			</a>
-			</div>
-			<h2><a href = '<?php the_permalink(); ?>' title='<?php the_title(); ?>'><?php the_title(); ?></a></h2>
-			<p><?php the_excerpt(); ?></p>
-			<p><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read more...</a></p>
-			<?php $count ++; ?>
-		</article>
-	<?php elseif ($count === 1): ?>
-		<article class="col-md-6 col-sm-12">
-			<a href="<?php the_permalink(); ?>">
-			<div class="imgwrapper">
-			<?php
-			if ( has_post_thumbnail() ) {
-				the_post_thumbnail();
-			} else {
-			    echo '<img src="img/stub1.png" />';			
-			}
-			?>
-			</a>
-			</div>
-			<h2> <a href = '<?php the_permalink(); ?>' title='<?php the_title(); ?>'><?php the_title(); ?></a></h2>
-			<p><?php the_excerpt(); ?></p>
-			<p><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read more...</a></p>
-		</article>
-		</div>
-		<?php $count ++; ?>
-		<h1 style="text-decoration: underline;">The Archives</h1>
-	<?php else: ?>
+			endif;
 
-		<div class="row">
-			<article class="buried col-md-12">
-			<h2><a href = '<?php the_permalink(); ?>' title='<?php the_title();?>'><?php the_title(); ?></a></h2>
-			<p><?php the_excerpt(); ?></p>
-			</article>
-		</div>
-	<?php endif; ?>
-		
-<?php endwhile; ?>
-<?php endif; ?>
+			/* Start the Loop */
+			while ( have_posts() ) : the_post(); ?>
 
-<?php the_posts_navigation(); ?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class('bg-light'); ?>>
+					<header class="entry-header">
+						<?php
+						if ( is_singular() ) :
+							the_title( '<h1 class="entry-title">', '</h1>' );
+						else :
+							the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+						endif; ?>
+					</header><!-- .entry-header -->
 
-</div>
+					<?php// if( has_post_thumbnail() ) : the_post_thumbnail(); endif; ?>
 
-<div class="row bio">
-	<h1>More Information</h1>
-	<div class="about-this col-md-6 col-sm-12">
-		<?php if ( !dynamic_sidebar('about-games') ) : ?>
-		<h2>About Andrew's Games</h2>
-		<p>They're games, made by Andrew. A variety of sizes, colours, genres, and formats. </p>
+					<div class="entry-content">
+						<?php the_excerpt(); ?>
+					</div><!-- .entry-content -->
+
+					
+					<a class="btn btn-dark" href="<?php the_permalink(); ?>">Find out more</a>
+					
+				</article><!-- #post-<?php the_ID(); ?> -->
+
+			<?php endwhile; ?>
 		<?php endif; ?>
-	</div>
-	<div class="author-bio col-md-6 col-sm-12">
-		<h2>About the Author</h2>
-		<p>Andrew is the proprietor of PizzaPranks (formerly Perspicacity1.com). He likes to make games and play games. His favourite system is the TurboGrafx but his favourite game is BattleChess. He likes everything, except the things he does not.</p>
-	</div>
-</div>
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
-</div>
-
+	</div><!-- .container -->
 <?php
-// Reset Query
-	wp_reset_query();
-	get_footer();		 
-?>
+get_footer();

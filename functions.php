@@ -1,31 +1,28 @@
 <?php
 
-function my_get_posts( $query ) {
+require_once 'inc/pizzapranks_custom_post_types.php';
 
-	if ( is_home() && $query->is_main_query() )
-		$query->set( 'post_type', array( 'post', 'comic', 'book','podcast' ) );
-
-	return $query;
-}
-
-//Load JS
+// Load JS
 function theme_js(){
-	wp_enqueue_script('jquery','https://code.jquery.com/jquery-2.1.1.min.js','',true);
-	wp_enqueue_script('modernizr', get_template_directory_uri().'/js/vendor/modernizr.min.js','','',true);
-	wp_enqueue_script('plugins', get_template_directory_uri().'/js/plugins.js','','',true);	
-    wp_enqueue_script('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js','jquery','',true);
+  //we need better jquery
+  wp_deregister_script('jquery');
+
+  //updated bootstrap js
+  wp_register_script('jquery', get_template_directory_uri().'/js/jquery.slim.min.js',array(),'false', true);
+  wp_enqueue_script( 'jquery'); 
+  wp_enqueue_script( 'popper' , get_template_directory_uri().'/js/popper.min.js',array('jquery'),'false', true);
+  wp_enqueue_script( 'bootstrap', get_template_directory_uri().'/js/bootstrap.js',array('jquery', 'popper'),'false', true);
+
+  // custom theme js
+  wp_enqueue_script( 'compiled', get_template_directory_uri().'/js/compiled.js',array('jquery', 'popper', 'bootstrap'),'false', true);
 }
-//Load CSS
+// Load CSS
 function theme_styles() {
-    wp_enqueue_style('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
-    wp_enqueue_style('normalize', get_template_directory_uri().'/normalize.css');
-    wp_enqueue_style('resets', get_template_directory_uri().'/main.css');
-    wp_enqueue_style('main', get_template_directory_uri().'/style.css');
-    wp_enqueue_style('VT323','http://fonts.googleapis.com/css?family=VT323');
-    wp_enqueue_style('lato','http://fonts.googleapis.com/css?family=Lato');
-    wp_enqueue_style("Oran","http://fonts.googleapis.com/css?family=Oranienbaum");
+    wp_enqueue_style('compiled-css', get_template_directory_uri().'/css/compiled.css');
+    wp_enqueue_style('google-fonts','https://fonts.googleapis.com/css?family=Lato|VT323');
 }
 
+// Register widgets
 function pizzapranks_widgets_init() {
   register_sidebar( array(
     'name'          => __( 'Header Ad Code', 'twilit_grotto' ),
@@ -141,21 +138,20 @@ add_action( 'widgets_init', 'pizzapranks_widgets_init' );
 
 //Handling random comic
 function random_add_rewrite() {
-       global $wp;
-       $wp->add_query_var('random');
-       add_rewrite_rule('random/?$', 'index.php?random=1', 'top');
+      global $wp;
+      $wp->add_query_var('random');
+      add_rewrite_rule('random/?$', 'index.php?random=1', 'top');
 }
 
-
 function random_template() {
-       if (get_query_var('random') == 1) {
-               $posts = get_posts('post_type=post&orderby=rand&numberposts=1');
-               foreach($posts as $post) {
-                       $link = get_permalink($post);
-               }
-               wp_redirect($link,307);
-               exit;
-       }
+    if (get_query_var('random') == 1) {
+      $posts = get_posts('post_type=post&orderby=rand&numberposts=1');
+      foreach($posts as $post) {
+              $link = get_permalink($post);
+      }
+      wp_redirect($link,307);
+      exit;
+    }
 }
 
 function the_oldest_comic(){
@@ -244,8 +240,8 @@ function random_comic(){
 function register_my_menus() {
 	register_nav_menus(
 		array(
-			'header-menu' =>__( 'Header Menu' ),
-			'links-menu' =>__( 'Footer Links' )
+			'header-menu' => 'Header Menu',
+			'links-menu' => 'Footer Links' 
 		)	
 	);
 }
@@ -253,7 +249,6 @@ function register_my_menus() {
 add_action('init','random_add_rewrite');
 add_action('wp_enqueue_scripts', 'theme_styles');
 add_action('wp_enqueue_scripts', 'theme_js');
-add_filter( 'pre_get_posts', 'my_get_posts' );
 add_theme_support( 'post-thumbnails' ); 
 add_action( 'init', 'register_my_menus' );
 add_action('template_redirect','random_template');
