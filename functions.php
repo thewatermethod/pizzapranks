@@ -252,3 +252,26 @@ add_action('wp_enqueue_scripts', 'theme_js');
 add_theme_support( 'post-thumbnails' ); 
 add_action( 'init', 'register_my_menus' );
 add_action('template_redirect','random_template');
+
+// gets the first image if you call it within the loop
+function catch_that_image() {
+    global $post, $posts;
+    $first_img = '';
+    ob_start();
+    ob_end_clean();
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+    $first_img = $matches[1][0];
+    return $first_img;
+}	
+
+
+function get_post_image(){
+  global $post;
+  
+  if( has_post_thumbnail($post->ID ) ){
+      return get_the_post_thumbnail( $post->ID, 'medium');
+  }
+
+  return false;
+
+}
