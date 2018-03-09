@@ -1,0 +1,13 @@
+a, a:visited, a:active {
+    color: $color3;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $color4;
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: $color1 thin dotted;
+}

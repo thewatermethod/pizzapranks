@@ -1,0 +1,26 @@
+html {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+    flex-grow: 1;
+    transition: all 1s ease;
+    z-index: 1;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+img, iframe, input {
+    max-width: 100%;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+

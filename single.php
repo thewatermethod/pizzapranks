@@ -1,22 +1,18 @@
 <?php get_header(); ?>	
 
 <main>
+	<?php
+		if ( have_posts() ) :
 
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
- 
-<div class="row"> 
+			/* Start the Loop */
+			while ( have_posts() ) : the_post(); 
+				
+				get_template_part( 'template-parts/content', get_post_format() );
 
-<div class="single-post col-md-8 col-md-offset-2">
-	<h1><?php the_title(); ?></h1>
-	<?php the_content(); ?>
+			endwhile; 
+		endif; 
+	?>
 
-</div>
-
-<?php endwhile; else: ?>
- 
-<p>Sorry, no posts matched your criteria.</p>
- 
-<?php endif; ?> 
 </div>
 </main>
 <div class="comments">

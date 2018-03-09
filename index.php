@@ -28,39 +28,18 @@ get_header(); ?>
 			endif;
 
 			/* Start the Loop */
-			while ( have_posts() ) : the_post(); ?>			
+			while ( have_posts() ) : the_post(); 
 				
-				<?php 
-					$post_image = get_post_image();					
-					$post_classes = array( 'bg-light' );
-				?>
+				get_template_part( 'template-parts/content', get_post_format() );
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class( $post_classes ); ?>>
-					<header class="entry-header">
-						<?php
-						if ( is_singular() ) :
-							the_title( '<h1 class="entry-title">', '</h1>' );
-						else :
-							the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-						endif; ?>
-					</header><!-- .entry-header -->					
-
-					<div class="entry-content">										
-						<?php if($post_image): echo $post_image; endif; ?>
-
-						<?php the_excerpt(); ?>
-					</div><!-- .entry-content -->
-
-					
-					<a class="btn btn-dark" href="<?php the_permalink(); ?>">Find out more</a>
-					
-				</article><!-- #post-<?php the_ID(); ?> -->
-
-			<?php endwhile; ?>
+			endwhile; ?>
 		<?php endif; ?>
 		</main><!-- #main -->
+		<?php get_sidebar(); ?>
 	</div><!-- #primary -->
 
-	</div><!-- .container -->
 <?php
+
+
+
 get_footer();

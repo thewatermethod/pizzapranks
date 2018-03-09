@@ -20,6 +20,7 @@ var gulp = require('gulp'),
     discardDuplicates = require('postcss-discard-duplicates'), 
 	postcss = require('gulp-postcss'),
 	transpile  = require('gulp-es6-module-transpiler'),
+	copy = require('copy'),
 	babel = require('gulp-babel');
 	
 gulp.task( 'compile-bootstrap', function() { 
@@ -36,45 +37,41 @@ gulp.task( 'build-sass', function(){
         discardDuplicates(),
     ];
 
-	return gulp.src([ 'scss/*.scss', 'scss/*.css', ])
+	return gulp.src([ 'scss/vars.scss', 'scss/*.scss', 'scss/*.css', ])
 		.pipe( sourcemaps.init() )
 		.pipe( concat( 'compiled.scss') )
         .pipe( sass({ outputStyle: 'expanded' }).on('error', sass.logError) )
         .pipe( postcss( plugins ) ) 
 		.pipe( sourcemaps.write() )		
-		.pipe( gulp.dest('css/') ) 
+		.pipe( gulp.dest('dist/css/') ) 
 });
 
 
 gulp.task('concat-js', function(cb) { 
 	pump([
-		gulp.src(['js/masonry.pkgd.min.js', 'js/main.js']),
+		gulp.src(['js/vendor/*.js', 'js/main.js']),
 		concat('compiled.js'),
 		uglify(),
-		gulp.dest('js/') 
+		gulp.dest('dist/js') 
 	], 
 	cb
 	);
 });
 
-gulp.task('vendor-js', function (cb) {
- 	pump([
-		gulp.src(['node_modules/jquery/dist/jquery.slim.min.js','node_modules/popper.js/dist/umd/popper.min.js','node_modules/bootstrap/dist/js/bootstrap.js']),
-        gulp.dest('js/')
-    ],
-    cb
-  );
-});
 
 // runs all the build processes
 gulp.task('compile', function(){
 	runSequence(
-		'compile-bootstrap',
+		'transport-vendor-js',
 		'build-sass',
 		'concat-js',		
-		'vendor-js'
 	);
 });
+
+
+gulp.task( 'transport-vendor-js', function( cb ){
+	copy(['node_modules/webfontloader/webfontloader.js'], 'js/vendor', {flatten: true}, cb );	
+} );
 
 
 // runs all the processes

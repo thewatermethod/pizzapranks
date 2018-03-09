@@ -1,5 +1,4 @@
 <?php
-	$home = false;
 	get_header();
 ?>	
 

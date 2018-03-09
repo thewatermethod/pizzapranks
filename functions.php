@@ -4,134 +4,23 @@ require_once 'inc/pizzapranks_custom_post_types.php';
 
 // Load JS
 function theme_js(){
-  //we need better jquery
-  wp_deregister_script('jquery');
-
-  //updated bootstrap js
-  wp_register_script('jquery', get_template_directory_uri().'/js/jquery.slim.min.js',array(),'false', true);
-  wp_enqueue_script( 'jquery'); 
-  wp_enqueue_script( 'popper' , get_template_directory_uri().'/js/popper.min.js',array('jquery'),'false', true);
-  wp_enqueue_script( 'bootstrap', get_template_directory_uri().'/js/bootstrap.js',array('jquery', 'popper'),'false', true);
-
-  // custom theme js
-  wp_enqueue_script( 'compiled', get_template_directory_uri().'/js/compiled.js',array('jquery', 'popper', 'bootstrap'),'false', true);
+  wp_enqueue_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', true);
 }
 // Load CSS
 function theme_styles() {
-    wp_enqueue_style('compiled-css', get_template_directory_uri().'/css/compiled.css');
-    wp_enqueue_style('google-fonts','https://fonts.googleapis.com/css?family=Lato|VT323');
+    wp_enqueue_style('compiled-css', get_template_directory_uri().'/dist/css/compiled.css');
 }
 
 // Register widgets
 function pizzapranks_widgets_init() {
   register_sidebar( array(
-    'name'          => __( 'Header Ad Code', 'twilit_grotto' ),
-    'id'            => 'header-ad',
+    'name'          =>  'Sidebar',
+    'id'            =>  'sidebar-1',
     'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '',
-    'after_title'   => '',
-  ) );
-  register_sidebar( array(
-    'name'          => __( 'Andrew Bio', 'twilit_grotto' ),
-    'id'            => 'andrew-bio',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
-  ) );
-  register_sidebar( array(
-    'name'          => __( 'Gino Bio', 'twilit_grotto' ),
-    'id'            => 'gino-bio',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
-  ) );  
-  register_sidebar( array(
-    'name'          => __( 'Matt Bio', 'twilit_grotto' ),
-    'id'            => 'matt-bio',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
-  ) );
-    register_sidebar( array(
-    'name'          => __( 'Book Info', 'twilit_grotto' ),
-    'id'            => 'book-info',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
-  ) );
-    register_sidebar( array(
-    'name'          => __( 'Footer Left', 'twilit_grotto' ),
-    'id'            => 'footer-left',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h5>',
-    'after_title'   => '</h5>',
-  ) );
-  register_sidebar( array(
-    'name'          => __( 'Footer Middle', 'pizzapranks' ),
-    'id'            => 'footer-middle',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h5>',
-    'after_title'   => '</h5>',
-  ) );  
-  register_sidebar( array(
-    'name'          => __( 'Footer Right', 'pizzapranks' ),
-    'id'            => 'footer-right',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h5>',
-    'after_title'   => '</h5>',
-  ) );
-    register_sidebar( array(
-    'name'          => __( 'About Games', 'pizzapranks' ),
-    'id'            => 'about-games',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
-  ) );
-  register_sidebar( array(
-    'name'          => __( 'About Comics', 'pizzapranks' ),
-    'id'            => 'about-comics',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
-  ) );  
-
-    register_sidebar( array(
-    'name'          => __( 'About Podcast', 'about-podcast' ),
-    'id'            => 'about-comics',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
-  ) );  
-  register_sidebar( array(
-    'name'          => __( 'Podcast Right Area', 'podcast-second' ),
-    'id'            => 'about-novel',
-    'description'   => '',
-    'before_widget' => '',
-    'after_widget'  => '',
-    'before_title'  => '<h2>',
-    'after_title'   => '</h2>',
+    'before_widget' => '<div class="widget">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3 class="widget-title">',
+    'after_title'   => '</h3>',
   ) );
 }
 add_action( 'widgets_init', 'pizzapranks_widgets_init' );
@@ -231,7 +120,7 @@ function random_comic(){
         'post_type'       => 'comic',
         'post_status'     => 'publish' );
     $myposts = get_posts( $args );
-	$permalink = get_permalink($myposts[0]->ID);
+	  $permalink = get_permalink($myposts[0]->ID);
     $post = $tmp_post;
     return $permalink;
 }
@@ -273,5 +162,18 @@ function get_post_image(){
   }
 
   return false;
-
 }
+
+/**
+ * Load Jetpack compatibility file.
+ */
+require get_template_directory() . '/inc/jetpack.php';
+
+function add_async_attribute($tag, $handle) {
+    if ( 'compiled-js' !== $handle )
+        return $tag;
+    return str_replace( ' src', ' async="async" src', $tag );
+}
+
+add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
+
