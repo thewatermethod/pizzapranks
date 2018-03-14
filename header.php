@@ -18,8 +18,10 @@
 			<p class="site-title"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></p>
 		<?php endif; ?>
 
-		<nav class="main-navigation">				
-			<?php wp_nav_menu( 	array( 'theme_location' => 'header-menu', 'menu_class' => 'main-navigation-menu' ) ); ?>
-		</nav>	
+		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+	       	<div class="menui top-menu"></div>
+	       	<div class="menui mid-menu"></div>
+	       	<div class="menui bottom-menu"></div>
+		</button>
 
 	</header>
