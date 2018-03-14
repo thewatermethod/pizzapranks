@@ -1,7 +1,7 @@
 @media( min-width: 850px ){
 
     main.site-main {
-        margin: 100px auto;
+        margin: 27px auto;
         max-width: 1200px;
 
         &:after, &:before {
@@ -13,16 +13,12 @@
             height: 100px;
             width: 100px;
             position: fixed;
-            top: 100px;         
+            top: 50px;         
         }
 
         &:after {
             right: 10%;
-            -moz-transform: scaleX(-1);
-            -o-transform: scaleX(-1);
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-            
+            transform: scaleX(-1);            
         }
 
         &:before {

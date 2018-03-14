@@ -4,7 +4,6 @@
   "description": "Wordpress theme for pizzapranks.com",
   "main": "gulpfile.js",
   "dependencies": {
-    "normalize.css": "^8.0.0",
     "requirejs": "^2.3.5",
     "webfontloader": "^1.6.28"
   },
@@ -27,6 +26,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
+    "normalize.css": "^8.0.0",
     "postcss": "^6.0.19",
     "postcss-discard-duplicates": "^2.1.0",
     "precss": "^3.1.2",

@@ -11,3 +11,10 @@ a:hover {
 a:focus {
     outline: $color1 thin dotted;
 }
+
+.entry-title a {
+    color: #333;
+    &:visited, &:active {
+        color: #333;
+    }
+}
