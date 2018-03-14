@@ -28,10 +28,8 @@ get_header(); ?>
 			endif;
 
 			/* Start the Loop */
-			while ( have_posts() ) : the_post(); 
-				
+			while ( have_posts() ) : the_post(); 				
 				get_template_part( 'template-parts/content', get_post_format() );
-
 			endwhile; ?>
 		<?php endif; ?>
 		</main><!-- #main -->

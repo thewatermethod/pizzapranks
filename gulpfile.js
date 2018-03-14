@@ -37,7 +37,7 @@ gulp.task( 'build-sass', function(){
         discardDuplicates(),
     ];
 
-	return gulp.src([ 'scss/vars.scss', 'scss/*.scss', 'scss/*.css', ])
+	return gulp.src([ 'vendor/css/normalize.css','scss/vars.scss', 'scss/*.scss', 'scss/*.css', ])
 		.pipe( sourcemaps.init() )
 		.pipe( concat( 'compiled.scss') )
         .pipe( sass({ outputStyle: 'expanded' }).on('error', sass.logError) )
@@ -63,10 +63,16 @@ gulp.task('concat-js', function(cb) {
 gulp.task('compile', function(){
 	runSequence(
 		'transport-vendor-js',
+		'transport-vendor-css',
 		'build-sass',
 		'concat-js',		
 	);
 });
+
+
+gulp.task( 'transport-vendor-css', function( cb ){
+	copy(['node_modules/normalize.css/normalize.css'], 'css/vendor', {flatten: true}, cb );	
+} );
 
 
 gulp.task( 'transport-vendor-js', function( cb ){

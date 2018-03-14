@@ -154,16 +154,6 @@ function catch_that_image() {
 }	
 
 
-function get_post_image(){
-  global $post;
-  
-  if( has_post_thumbnail($post->ID ) ){
-      return get_the_post_thumbnail( $post->ID, 'medium');
-  }
-
-  return false;
-}
-
 /**
  * Load Jetpack compatibility file.
  */
