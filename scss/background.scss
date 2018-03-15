@@ -1,4 +1,4 @@
-@media( min-width: 850px ){
+@media( min-width: 1000px ){
 
     main.site-main {
         margin: 27px auto;
@@ -17,12 +17,12 @@
         }
 
         &:after {
-            right: 10%;
+            right: 8%;
             transform: scaleX(-1);            
         }
 
         &:before {
-            left: 10%;
+            left: 8%;
             transform: scale(1);
         }
 
