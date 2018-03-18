@@ -18,10 +18,12 @@
 			<p class="site-title"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></p>
 		<?php endif; ?>
 
-		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+		<button id="menuToggle" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 	       	<div class="menui top-menu"></div>
 	       	<div class="menui mid-menu"></div>
 	       	<div class="menui bottom-menu"></div>
 		</button>
+
+		<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container_class' => 'main-menu' ) ); ?>		
 
 	</header>

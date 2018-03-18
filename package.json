@@ -4,6 +4,7 @@
   "description": "Wordpress theme for pizzapranks.com",
   "main": "gulpfile.js",
   "dependencies": {
+    "moment": "^2.21.0",
     "requirejs": "^2.3.5",
     "webfontloader": "^1.6.28"
   },

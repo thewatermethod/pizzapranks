@@ -46,7 +46,7 @@ gulp.task( 'build-sass', function(){
 
 gulp.task('concat-js', function(cb) { 
 	pump([
-		gulp.src(['js/vendor/*.js', 'js/main.js']),
+		gulp.src(['js/vendor/*.js', 'js/calendar.js','js/main.js']),
 		concat('compiled.js'),
 		uglify(),
 		gulp.dest('dist/js') 
@@ -62,7 +62,7 @@ gulp.task( 'transport-vendor-css', function( cb ){
 
 
 gulp.task( 'transport-vendor-js', function( cb ){
-	copy(['node_modules/webfontloader/webfontloader.js'], 'js/vendor', {flatten: true}, cb );	
+	copy(['node_modules/webfontloader/webfontloader.js', 'node_modules/moment/min/moment.min.js'], 'js/vendor', {flatten: true}, cb );	
 } );
 
 
@@ -72,6 +72,6 @@ gulp.task( 'default', function(){
 		'transport-vendor-js',
 		'transport-vendor-css',
 		'build-sass',
-		'concat-js',		
+		'concat-js'	
 	);
 });

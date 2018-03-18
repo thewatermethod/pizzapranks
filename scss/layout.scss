@@ -4,7 +4,7 @@ body {
     padding: 0;
 }
 
-article.post {
+article.post, .comments, .widget-area, footer.site-footer {
     margin: 1em auto;
     max-width: 67vw;
 }

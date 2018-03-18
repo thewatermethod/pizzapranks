@@ -2,6 +2,9 @@ body {
     background:$earth;
 }
 
+img {
+	max-width: 100%;	
+}
 .alignleft {
 	display: inline;
 	float: left;
