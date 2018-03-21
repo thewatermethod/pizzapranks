@@ -9,7 +9,4 @@
 ?>
 
 
-<aside id="tertiary" class="widget-area">
-<div id="calendar" class="pixel-calendar"></div>
-<?php if (  is_active_sidebar( 'sidebar-2' ) ) { dynamic_sidebar( 'sidebar-2' ); } ?>
-</aside><!-- #secondary -->
+<aside id="tertiary" class="widget-area"><?php if (  is_active_sidebar( 'sidebar-2' ) ) { dynamic_sidebar( 'sidebar-2' ); } ?></aside><!-- #secondary -->

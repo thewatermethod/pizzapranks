@@ -1,3 +1,7 @@
+html:not(.wf-active){
+	color: transparent !important;
+}
+
 body {
     background:$earth;
 }
