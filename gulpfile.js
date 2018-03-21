@@ -38,7 +38,9 @@ gulp.task( 'build-sass', function(){
 		.pipe( sourcemaps.init() )
 		.pipe( concat( 'compiled.scss') )
         .pipe( sass({ outputStyle: 'expanded' }).on('error', sass.logError) )
-        .pipe( postcss( plugins ) ) 
+		.pipe( postcss( plugins ) )
+		.pipe( csslint() )		
+		.pipe( csslint.formatter() )
 		.pipe( sourcemaps.write() )		
 		.pipe( gulp.dest('dist/css/') ) 
 });
