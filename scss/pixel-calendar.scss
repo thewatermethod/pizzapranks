@@ -1,4 +1,4 @@
-$calendar-width: 300px;
+$calendar-width: auto;
 
 .pixel-calendar {
     -webkit-transform: translate3d(0, 0, 0);
@@ -12,7 +12,6 @@ $calendar-width: 300px;
     width: $calendar-width;
 
     .header {
-        height: 50px;
         width: $calendar-width;
         background: rgba(66, 66, 66, 1);
         text-align: center;
@@ -21,6 +20,7 @@ $calendar-width: 300px;
     }
 
     .header h2 {
+        font-family: 'VT323', monospace;
         margin: 0;
         padding: 0;        
         font-size: 1em;
