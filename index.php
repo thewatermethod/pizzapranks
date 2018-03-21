@@ -14,6 +14,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
+		
 		<main id="main" class="site-main">
 
 		<?php
@@ -33,7 +34,8 @@ get_header(); ?>
 			endwhile; ?>
 		<?php endif; ?>
 		</main><!-- #main -->
-		<?php get_sidebar(); ?>
+		<?php get_sidebar('left');?>
+		<?php get_sidebar('right'); ?>
 	</div><!-- #primary -->
 
 <?php

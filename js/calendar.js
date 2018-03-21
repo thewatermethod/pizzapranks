@@ -7,13 +7,6 @@
       this.events = events;
       this.current = moment().date(1);
       this.draw();
-      var current = document.querySelector('.today');
-      if(current) {
-        var self = this;
-        window.setTimeout(function() {
-          self.openDay(current);
-        }, 500);
-      }
     }
   
     Calendar.prototype.draw = function() {
@@ -23,7 +16,7 @@
       //Draw Month
       this.drawMonth();
   
-      this.drawLegend();
+      //this.drawLegend();
     }
   
     Calendar.prototype.drawHeader = function() {
@@ -33,7 +26,7 @@
         this.header = createElement('div', 'header');
         this.header.className = 'header';
   
-        this.title = createElement('h1');
+        this.title = createElement('h2');
   
         var right = createElement('div', 'right');
         right.addEventListener('click', function() { self.nextMonth(); });
@@ -118,8 +111,9 @@
   
     Calendar.prototype.getWeek = function(day) {
       if(!this.week || day.day() === 0) {
-        this.week = createElement('div', 'week');
-        this.month.appendChild(this.week);
+       // this.week = createElement('div', 'week');
+        //console.log( this.month );
+        //this.month.appendChild(this.month);
       }
     }
   
@@ -137,8 +131,7 @@
       var name = createElement('div', 'day-name', day.format('ddd'));
   
       //Day Number
-      var number = createElement('div', 'day-number', day.format('DD'));
-  
+      var number = createElement('div', 'day-number', day.format('DD'));  
   
       //Events
       var events = createElement('div', 'day-events');
@@ -147,7 +140,8 @@
       outer.appendChild(name);
       outer.appendChild(number);
       outer.appendChild(events);
-      this.week.appendChild(outer);
+      //this.week.appendChild(outer);
+      this.month.appendChild(outer);
     }
   
     Calendar.prototype.drawEvents = function(day, element) {

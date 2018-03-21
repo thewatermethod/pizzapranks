@@ -1,26 +1,29 @@
-#calendar {
+$calendar-width: 300px;
+
+.pixel-calendar {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    width: 420px;
-    margin: 0 auto;
-    height: 570px;
+    color: white;
+    font-family: 'VT323', monospace;
+    height: auto;
+    margin: 0 auto;    
     overflow: hidden;
-
+    width: $calendar-width;
 
     .header {
         height: 50px;
-        width: 420px;
+        width: $calendar-width;
         background: rgba(66, 66, 66, 1);
         text-align: center;
         position:relative;
         z-index: 100;
     }
 
-    .header h1 {
+    .header h2 {
         margin: 0;
-        padding: 0;
-        font-size: 20px;
+        padding: 0;        
+        font-size: 1em;
         line-height: 50px;
         font-weight: 100;
         letter-spacing: 1px;
@@ -49,8 +52,12 @@
     }
 
     .month {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         /*overflow: hidden;*/
         opacity: 0;
+
     }
 
     .month.new {
@@ -86,14 +93,10 @@
         opacity: 1;
     }
 
-    .week {
-        background: #4A4A4A;
-    }
-
+  
     .day {
         display: inline-block;
-        width: 60px;
-        padding: 10px;
+        padding: 2px;
         text-align: center;
         vertical-align: top;
         cursor: pointer;

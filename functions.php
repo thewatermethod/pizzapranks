@@ -4,7 +4,9 @@ require_once 'inc/pizzapranks_custom_post_types.php';
 
 // Load JS
 function theme_js(){
-  wp_enqueue_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', true);
+  wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', true);
+
+  wp_enqueue_script( 'compiled-js');
 }
 // Load CSS
 function theme_styles() {
@@ -14,13 +16,22 @@ function theme_styles() {
 // Register widgets
 function pizzapranks_widgets_init() {
   register_sidebar( array(
-    'name'          =>  'Sidebar',
+    'name'          =>  'Sidebar Left',
     'id'            =>  'sidebar-1',
     'description'   => '',
     'before_widget' => '<div class="widget">',
     'after_widget'  => '</div>',
-    'before_title'  => '<h3 class="widget-title">',
-    'after_title'   => '</h3>',
+    'before_title'  => '<h2 class="widget-title">',
+    'after_title'   => '</h2>',
+  ) );
+  register_sidebar( array(
+    'name'          =>  'Sidebar Right',
+    'id'            =>  'sidebar-2',
+    'description'   => '',
+    'before_widget' => '<div class="widget">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2 class="widget-title">',
+    'after_title'   => '</h2>',
   ) );
 }
 add_action( 'widgets_init', 'pizzapranks_widgets_init' );
