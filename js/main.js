@@ -20,7 +20,7 @@
 
      $('#menuToggle').click( function(){
         $(this).toggleClass('toggled');
-        $('header.site-header .menu').toggleClass('open');
+        $('header.site-header .main-menu').toggleClass('open');
      });
 
     var data = [

@@ -18,16 +18,10 @@ body {
             grid-template-columns: 25% 50% 25%;
         }
 
-        aside.widget-area{
-            height: 100vh;
+        aside.widget-area{            
             order: 1;
+            padding-top: 75vh;
             position: relative;
-            z-index: 1;
-            
-                div.pixel-calendar {
-                    position: fixed;
-                    right: 0;
-                }
         }
 
         aside.widget-area:last-of-type{
