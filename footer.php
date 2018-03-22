@@ -39,7 +39,7 @@
 								
 		</section>
 			
-		<div class="row notice ad"> <!-- Beginning of Project Wonderful ad code: -->
+		<!-- <div class="row notice ad"> <!-- Beginning of Project Wonderful ad code: -->
 			<section class="col-md-offset-2 col-md-8">
 			<?php if(! dynamic_sidebar('footer-ad')): ?>
 			<!-- Ad box ID: 39477 -->
@@ -58,7 +58,7 @@
 				<tr><td><img src="http://www.projectwonderful.com/nojs.php?id=39477&amp;type=5" width="728" height="90" usemap="#admap39477" border="0" alt="" /></td></tr><tr><td bgcolor="#ffffff" colspan="1"><center><a style="font-size:10px;color:#0000ff;text-decoration:none;line-height:1.2;font-weight:bold;font-family:Tahoma, verdana,arial,helvetica,sans-serif;text-transform: none;letter-spacing:normal;text-shadow:none;white-space:normal;word-spacing:normal;" href="http://www.projectwonderful.com/advertisehere.php?id=39477&amp;type=5" target="_blank">Ads by Project Wonderful!  Your ad here, right now: $0</a></center></td></tr><tr><td colspan=1 valign="top" bgcolor="#000000" style="height:3px;font-size:1px;padding:0px;max-height:3px;"></td></tr></table>
 			</noscript>
 			<?php endif;?>					
-		</div>
+		</div> -->
 		
 
 		<div class="row notice"><p>&#169; 2009 - <?php echo date('Y'); ?>
