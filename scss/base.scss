@@ -1,5 +1,9 @@
-html:not(.wf-active) *{
+html.wf-loading *{
 	color: transparent !important;
+}
+
+html.wf-inactive *, html.wf-active * {
+	color: inherit;
 }
 
 body {

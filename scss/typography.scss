@@ -1,10 +1,10 @@
 html {
-    font-size: 22px;
+    font-size: 20px;
 }
 
 body{
     color: $color4;
-    font-family: "Libre Baskerville", -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-size: 1em;
 }
 
@@ -13,7 +13,7 @@ h1.site-title, .site-title {
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: "Slabo 27px";
+    font-family: Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
 }
 
 h1, .site-title {

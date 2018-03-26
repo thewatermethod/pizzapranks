@@ -1,6 +1,6 @@
 (function($) {   
 
-    var fonts = ['VT323', 'Slabo 27px', 'Libre Baskerville'];
+    var fonts = ['VT323'];
     loadFonts( fonts ); 
 
     $headerSiteHeader = jQuery('header.site-header');
