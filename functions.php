@@ -178,3 +178,6 @@ function add_async_attribute($tag, $handle) {
 
 add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
 
+require get_template_directory() . '/inc/class-pizzapranks-post-metabox.php';
+
+//todo - editorstyles.css

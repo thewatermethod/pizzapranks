@@ -63,7 +63,7 @@
 
 		<div class="row notice"><p>&#169; 2009 - <?php echo date('Y'); ?>
 			<?php bloginfo('name'); ?> -<em> All Rights Reserved.</em></p></div>
-			<div class="notice"><p>Designed by <a href="https://www.whalingcityweb.com" rel="designer">Whaling City Web</a></p>
+			<div class="notice"><p>Designed & Made with Love by <a href="https://www.twitter.com/thewatermethod" rel="designer">Matt Bevilacqua</a>, who owns <a href="https://whalingcityweb.com">Whaling City Web</a></p>
 	   </div>
 	</footer>	
 		<?php wp_footer();?>
