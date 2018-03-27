@@ -1,20 +1,16 @@
 a, a:visited, a:active {
-    color: $color3;
+    border-bottom: 1px solid $link-underline;
+    color: $color4;
     text-decoration: none;
 }
 
 a:hover {
+    border-bottom: 1px solid transparent;
     color: $color4;
     text-decoration: underline;
 }
 
 a:focus {
+    border-bottom: 1px solid transparent;
     outline: $color1 thin dotted;
-}
-
-.entry-title a {
-    color: #333;
-    &:visited, &:active {
-        color: #333;
-    }
 }

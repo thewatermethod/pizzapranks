@@ -31,6 +31,11 @@ header.site-header .site-title {
 
 }
 
+header.site-header .site-title a {
+    border-bottom: 0;
+    color: $color3;
+}
+
 .main-navigation {
     flex-grow: 2;
 }

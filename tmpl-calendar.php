@@ -20,9 +20,9 @@ get_header(); ?>
 			/* Start the Loop */
 			while ( have_posts() ) : the_post(); ?>
 				<?php
-                get_template_part( 'template-parts/content', get_post_format() );
+                get_template_part( 'template-parts/content', 'calendar' );
 				?>
-				<div id="calendar" class="pixel-calendar"></div><?php
+				<?php
 			endwhile; ?>
 		<?php endif; ?>
 		</main><!-- #main -->
