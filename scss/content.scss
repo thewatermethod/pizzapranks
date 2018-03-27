@@ -1,5 +1,19 @@
-span.posted-on {
-    display: block;
-    font-size: .75em;
-    font-style: italic;
+.meta-container{
+    display: flex;
+    font-family: VT323;
+
+    span.meta-item {
+        display: block;
+        min-width: 33%;
+        text-transform: uppercase;
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    span.posted-on {
+        font-style: italic;
+    }
+
 }

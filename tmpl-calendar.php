@@ -13,15 +13,16 @@ get_header(); ?>
 		<main id="main" class="site-main">
 
 		<?php
-		if ( have_posts() ) :
-            
+		if ( have_posts() ) :         
                 
             
 
 			/* Start the Loop */
-			while ( have_posts() ) : the_post(); 				
+			while ( have_posts() ) : the_post(); ?>
+				<?php
                 get_template_part( 'template-parts/content', get_post_format() );
-                ?><div id="calendar" class="pixel-calendar"></div><?php
+				?>
+				<div id="calendar" class="pixel-calendar"></div><?php
 			endwhile; ?>
 		<?php endif; ?>
 		</main><!-- #main -->
