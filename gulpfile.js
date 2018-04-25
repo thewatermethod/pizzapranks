@@ -64,7 +64,7 @@ gulp.task( 'transport-vendor-css', function( cb ){
 
 
 gulp.task( 'transport-vendor-js', function( cb ){
-	copy(['node_modules/webfontloader/webfontloader.js', 'node_modules/moment/min/moment.min.js'], 'js/vendor', {flatten: true}, cb );	
+	copy(['node_modules/webfontloader/webfontloader.js', 'node_modules/moment/min/moment.min.js', 'node_modules/vue/dist/vue.js'], 'js/vendor', {flatten: true}, cb );	
 } );
 
 

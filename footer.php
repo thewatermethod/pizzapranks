@@ -39,10 +39,11 @@
 								
 		</section>
 			
-		<!-- <div class="row notice ad"> <!-- Beginning of Project Wonderful ad code: -->
+		<!-- <div class="row notice ad"> 
+			
 			<section class="col-md-offset-2 col-md-8">
 			<?php if(! dynamic_sidebar('footer-ad')): ?>
-			<!-- Ad box ID: 39477 -->
+			
 			<script type="text/javascript">
 			
 			var pw_d=document;

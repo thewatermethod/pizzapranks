@@ -10,12 +10,12 @@
     }
   
     Calendar.prototype.draw = function() {
+
       //Create Header
       this.drawHeader();
   
       //Draw Month
-      this.drawMonth();
- 
+      this.drawMonth(); 
 
     }
   
@@ -42,6 +42,7 @@
       }
   
       this.title.innerHTML = this.current.format('MMMM YYYY');
+
     }
   
     Calendar.prototype.drawMonth = function() {
@@ -111,9 +112,7 @@
   
     Calendar.prototype.getWeek = function(day) {
       if(!this.week || day.day() === 0) {
-       // this.week = createElement('div', 'week');
-        //console.log( this.month );
-        //this.month.appendChild(this.month);
+
       }
     }
   
@@ -124,7 +123,10 @@
       //Outer Day
       var outer = createElement('div', this.getDayClass(day));
       outer.addEventListener('click', function() {
-        self.openDay(this);
+
+      //  self.openDay(this);
+
+
       });
   
       //Day Name
@@ -140,7 +142,6 @@
       outer.appendChild(name);
       outer.appendChild(number);
       outer.appendChild(events);
-      //this.week.appendChild(outer);
       this.month.appendChild(outer);
     }
   
@@ -170,105 +171,105 @@
       return classes.join(' ');
     }
   
-    Calendar.prototype.openDay = function(el) {
-      var details, arrow;
-      var dayNumber = +el.querySelectorAll('.day-number')[0].innerText || +el.querySelectorAll('.day-number')[0].textContent;
-      var day = this.current.clone().date(dayNumber);
+    // Calendar.prototype.openDay = function(el) {
+    //   var details, arrow;
+    //   var dayNumber = +el.querySelectorAll('.day-number')[0].innerText || +el.querySelectorAll('.day-number')[0].textContent;
+    //   var day = this.current.clone().date(dayNumber);
   
-      var currentOpened = document.querySelector('.details');
+    //   var currentOpened = document.querySelector('.details');
   
-      //Check to see if there is an open detais box on the current row
-      if(currentOpened && currentOpened.parentNode === el.parentNode) {
-        details = currentOpened;
-        arrow = document.querySelector('.arrow');
-      } else {
-        //Close the open events on differnt week row
-        //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
-        if(currentOpened) {
-          currentOpened.addEventListener('webkitAnimationEnd', function() {
-            currentOpened.parentNode.removeChild(currentOpened);
-          });
-          currentOpened.addEventListener('oanimationend', function() {
-            currentOpened.parentNode.removeChild(currentOpened);
-          });
-          currentOpened.addEventListener('msAnimationEnd', function() {
-            currentOpened.parentNode.removeChild(currentOpened);
-          });
-          currentOpened.addEventListener('animationend', function() {
-            currentOpened.parentNode.removeChild(currentOpened);
-          });
-          currentOpened.className = 'details out';
-        }
+    //   //Check to see if there is an open detais box on the current row
+    //   if(currentOpened && currentOpened.parentNode === el.parentNode) {
+    //     details = currentOpened;
+    //     arrow = document.querySelector('.arrow');
+    //   } else {
+    //     //Close the open events on differnt week row
+    //     //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
+    //     if(currentOpened) {
+    //       currentOpened.addEventListener('webkitAnimationEnd', function() {
+    //         currentOpened.parentNode.removeChild(currentOpened);
+    //       });
+    //       currentOpened.addEventListener('oanimationend', function() {
+    //         currentOpened.parentNode.removeChild(currentOpened);
+    //       });
+    //       currentOpened.addEventListener('msAnimationEnd', function() {
+    //         currentOpened.parentNode.removeChild(currentOpened);
+    //       });
+    //       currentOpened.addEventListener('animationend', function() {
+    //         currentOpened.parentNode.removeChild(currentOpened);
+    //       });
+    //       currentOpened.className = 'details out';
+    //     }
   
-        //Create the Details Container
-        details = createElement('div', 'details in');
+    //     //Create the Details Container
+    //     details = createElement('div', 'details in');
   
-        //Create the arrow
-        var arrow = createElement('div', 'arrow');
+    //     //Create the arrow
+    //     var arrow = createElement('div', 'arrow');
   
-        //Create the event wrapper
+    //     //Create the event wrapper
   
-        details.appendChild(arrow);
-        el.parentNode.appendChild(details);
-      }
+    //     details.appendChild(arrow);
+    //     el.parentNode.appendChild(details);
+    //   }
   
-      var todaysEvents = this.events.reduce(function(memo, ev) {
-        if(ev.date.isSame(day, 'day')) {
-          memo.push(ev);
-        }
-        return memo;
-      }, []);
+    //   var todaysEvents = this.events.reduce(function(memo, ev) {
+    //     if(ev.date.isSame(day, 'day')) {
+    //       memo.push(ev);
+    //     }
+    //     return memo;
+    //   }, []);
   
-      this.renderEvents(todaysEvents, details);
+    //   this.renderEvents(todaysEvents, details);
   
-      arrow.style.left = el.offsetLeft - el.parentNode.offsetLeft + 27 + 'px';
-    }
+    //   arrow.style.left = el.offsetLeft - el.parentNode.offsetLeft + 27 + 'px';
+    // }
   
-    Calendar.prototype.renderEvents = function(events, ele) {
-      //Remove any events in the current details element
-      var currentWrapper = ele.querySelector('.events');
-      var wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
+    // Calendar.prototype.renderEvents = function(events, ele) {
+    //   //Remove any events in the current details element
+    //   var currentWrapper = ele.querySelector('.events');
+    //   var wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
   
-      events.forEach(function(ev) {
-        var div = createElement('div', 'event');
-        var square = createElement('div', 'event-category ' + ev.color);
-        var span = createElement('span', '', ev.eventName);
+    //   events.forEach(function(ev) {
+    //     var div = createElement('div', 'event');
+    //     var square = createElement('div', 'event-category ' + ev.color);
+    //     var span = createElement('span', '', ev.eventName);
   
-        div.appendChild(square);
-        div.appendChild(span);
-        wrapper.appendChild(div);
-      });
+    //     div.appendChild(square);
+    //     div.appendChild(span);
+    //     wrapper.appendChild(div);
+    //   });
   
-      if(!events.length) {
-        var div = createElement('div', 'event empty');
-        var span = createElement('span', '', 'No Events');
+    //   if(!events.length) {
+    //     var div = createElement('div', 'event empty');
+    //     var span = createElement('span', '', 'No Events');
   
-        div.appendChild(span);
-        wrapper.appendChild(div);
-      }
+    //     div.appendChild(span);
+    //     wrapper.appendChild(div);
+    //   }
   
-      if(currentWrapper) {
-        currentWrapper.className = 'events out';
-        currentWrapper.addEventListener('webkitAnimationEnd', function() {
-          currentWrapper.parentNode.removeChild(currentWrapper);
-          ele.appendChild(wrapper);
-        });
-        currentWrapper.addEventListener('oanimationend', function() {
-          currentWrapper.parentNode.removeChild(currentWrapper);
-          ele.appendChild(wrapper);
-        });
-        currentWrapper.addEventListener('msAnimationEnd', function() {
-          currentWrapper.parentNode.removeChild(currentWrapper);
-          ele.appendChild(wrapper);
-        });
-        currentWrapper.addEventListener('animationend', function() {
-          currentWrapper.parentNode.removeChild(currentWrapper);
-          ele.appendChild(wrapper);
-        });
-      } else {
-        ele.appendChild(wrapper);
-      }
-    }
+    //   if(currentWrapper) {
+    //     currentWrapper.className = 'events out';
+    //     currentWrapper.addEventListener('webkitAnimationEnd', function() {
+    //       currentWrapper.parentNode.removeChild(currentWrapper);
+    //       ele.appendChild(wrapper);
+    //     });
+    //     currentWrapper.addEventListener('oanimationend', function() {
+    //       currentWrapper.parentNode.removeChild(currentWrapper);
+    //       ele.appendChild(wrapper);
+    //     });
+    //     currentWrapper.addEventListener('msAnimationEnd', function() {
+    //       currentWrapper.parentNode.removeChild(currentWrapper);
+    //       ele.appendChild(wrapper);
+    //     });
+    //     currentWrapper.addEventListener('animationend', function() {
+    //       currentWrapper.parentNode.removeChild(currentWrapper);
+    //       ele.appendChild(wrapper);
+    //     });
+    //   } else {
+    //     ele.appendChild(wrapper);
+    //   }
+    // }
   
     Calendar.prototype.drawLegend = function() {
       var legend = createElement('div', 'legend');
@@ -299,6 +300,11 @@
       this.draw();
     }
   
+
+    Calendar.prototype.createModal = function() {
+
+    }
+
     window.Calendar = Calendar;
   
     function createElement(tagName, className, innerText) {

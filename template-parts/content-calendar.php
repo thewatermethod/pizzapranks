@@ -68,7 +68,7 @@
     <?php endif; ?> -->
 
 	<div class="entry-content">
-        <div id="calendar" class="pixel-calendar"></div>
+        
 		<?php
 		    the_content();
 		?>

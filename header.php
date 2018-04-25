@@ -15,9 +15,9 @@
 		<?php if( is_home() ) : ?>
 			<h1 class="site-title"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
 		<?php else: ?>
-			<p class="site-title"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></p>
+			<p class="site-title"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></p>			
 		<?php endif; ?>
-
+		
 		<button id="menuToggle" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 	       	<div class="menui top-menu"></div>
 	       	<div class="menui mid-menu"></div>
