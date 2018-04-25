@@ -68,6 +68,21 @@
     <?php endif; ?> -->
 
 	<div class="entry-content">
+
+		<!-- vue app -->
+		<div id="calendarApp" class="calendar-app">
+			
+			<div class="calendar-title">{{ currentMonth }} {{ currentYear }}</div>
+
+			<div class="calendar-main">
+				<div v-for="blankDay in blankDaysBeginning"></div>
+				<div v-for="day in daysInMonth" class="day">{{day.day}}</div>
+				<div v-for="blankDay in blankDaysEnd" class="day blank"></div>
+			</div>
+
+			<button :click="previousMonth()" >Previous Month</button>
+			<button :click="nextMonth()">Next Month</button>
+		</div>
         
 		<?php
 		    the_content();
