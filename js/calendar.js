@@ -3,22 +3,79 @@ if( document.querySelector('#calendarApp') ){
 		/*  Here's a Vue app */
 		var calendarApp= new Vue({
 			el: '#calendarApp',  //dom node to host our app
-			data: { 	// the blood and guts of the app
-        
-        pixels: null,
-        
-        currentYear: null,
-        currentMonth: null,        
-        
-        daysInMonth: [],
-        blankDaysBeginning: [],
-        blankDaysEnd: [],
-
-
+			data: { 	// the blood and guts of the app        
+				pixels: null,
+				thisMoment: null,
 			},
 		
 			computed: { // here's where we can put data that is derived from other, changing variables
-			
+
+				currentMonth: function() {
+					if( this.thisMoment == null ) {
+						return; 
+					}
+
+					return this.thisMoment.format('MMMM');
+				},	
+				
+				currentYear: function(){
+					
+					if( this.thisMoment == null ) {
+						return; 
+					}
+
+					return this.thisMoment.format('YYYY');
+				},
+
+				daysAfterMonth: function(){
+
+					if( this.thisMoment == null ) {
+						return; 
+					}
+
+					var numberBlankDaysEnd = 6 - moment().endOf('month').weekday();
+					var blankDaysEnd = [];
+	
+					for (var index = 0; index < numberBlankDaysEnd; index++) {
+						blankDaysEnd.push( "day" );          
+					}
+					
+					return blankDaysEnd;
+
+				},
+
+				daysBeforeMonth: function(){
+
+					if( this.thisMoment == null ) {
+						return; 
+					}
+				
+					var days = this.thisMoment.startOf('month').weekday();
+					var arr = [];
+					
+					for (var index = 0; index < days; index++) {
+						arr.push(  {  day: index + 1, pixel: null }  );          
+					}
+
+					return arr;
+				},
+
+				daysInMonth: function() {
+
+					if( this.thisMoment == null ) {
+						return; 
+					}
+
+					var days = this.thisMoment.daysInMonth()
+					var arr = [];
+					
+					for (var index = 0; index < days; index++) {
+						arr.push(  {  day: index + 1, pixel: null }  );          
+					}
+
+					return arr;
+				},
+
 			},
 	
 			mounted: function(){
@@ -34,22 +91,8 @@ if( document.querySelector('#calendarApp') ){
 				 *
 				 */
 
-        this.currentMonth = moment().format('MMMM');
-        this.currentYear = moment().format('YYYY');
 
-        var numberBlankDaysBegin = 6 - moment().startOf('month').weekday();
-        var numberBlankDaysEnd = 6 - moment().endOf('month').weekday();
-        console.log( numberBlankDaysEnd );
-        var numberDaysInMonth = moment().daysInMonth();
-        
-        for (var index = 0; index < numberDaysInMonth; index++) {
-          this.daysInMonth.push(  {  day: index + 1, pixel: null }  );          
-        }
-
-        for (var index = 0; index < numberBlankDaysEnd; index++) {
-          this.blankDaysEnd.push( "day" );          
-        }
-
+				 this.thisMoment = moment();
               
 				/**
 				 *  Here is where everything else that needs to happen as the vue app loads should live          
@@ -60,15 +103,14 @@ if( document.querySelector('#calendarApp') ){
 	
 			methods: {
 				/* Methods are pretty self explanatory --  they are the functions that handle all the logic of the app*/
-      
-        nextMonth: function(){
-         // this.currentMonth = this.currentMonthsubtract( 1, 'M' );
-
-        },
+			
+				nextMonth: function(){
+					this.thisMoment = this.thisMoment.add( 1, 'M' );
+				},
 
 				previousMonth: function(){
-         // this.currentMonth = this.currentMonth().add( 1, 'M' );
-			  },
+					this.thisMoment = this.thisMoment.subtract( 1, 'M' );
+			 	},
 					
 			} // closes methods
 	

@@ -75,13 +75,15 @@
 			<div class="calendar-title">{{ currentMonth }} {{ currentYear }}</div>
 
 			<div class="calendar-main">
-				<div v-for="blankDay in blankDaysBeginning"></div>
+				<div v-for="blankDay in daysBeforeMonth"></div>
 				<div v-for="day in daysInMonth" class="day">{{day.day}}</div>
-				<div v-for="blankDay in blankDaysEnd" class="day blank"></div>
+				<div v-for="blankDay in daysAfterMonth" class="day blank"></div>
 			</div>
 
-			<button :click="previousMonth()" >Previous Month</button>
-			<button :click="nextMonth()">Next Month</button>
+			<div class="calendar-footer">
+				<button v-on:click="previousMonth()" >Previous Month</button>
+				<button v-on:click="nextMonth()">Next Month</button>
+			</div>
 		</div>
         
 		<?php

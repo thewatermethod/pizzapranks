@@ -24,3 +24,24 @@
 .calendar-main .day.blank {
     background: $color4;
 } 
+
+.calendar-footer {
+    display: flex; 
+    flex-direction: row;
+}
+
+.calendar-footer button {
+    background: $color2;
+    border: 0;
+    color: black;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 0;
+    outline: 0;
+    padding: .5em;    
+    width: 50%;
+}
+
+.calendar-footer button:first-child {
+    background: $color3;
+}
