@@ -24,6 +24,6 @@
 	       	<div class="menui bottom-menu"></div>
 		</button>
 
-		<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container_class' => 'main-menu' ) ); ?>		
+		<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container_class' => 'main-menu h1' ) ); ?>		
 
 	</header>

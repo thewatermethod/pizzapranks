@@ -9,6 +9,16 @@ article {
     max-width: 680px;
 }
 
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex.flex-column {
+    flex-direction: column;
+}
+
+
 @media( min-width: 1200px ){
 
     .comments {

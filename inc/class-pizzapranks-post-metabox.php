@@ -56,7 +56,7 @@ class PizzaPranksPostMeta {
         ?>
         
         <p><label for="calendar_category">Select category of posts to populate the calendar</label></p>
-        <?php wp_dropdown_categories( array( 'name' => 'calendar_category', 'selected' => $calendar_category ) ); 
+        <?php wp_dropdown_categories( array( 'name' => 'calendar_category', 'selected' => $calendar_category, 'hide_empty' => 0 ) ); 
         
     }
 

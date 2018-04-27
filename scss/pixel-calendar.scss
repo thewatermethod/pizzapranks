@@ -3,6 +3,7 @@
     background-color: $color1;
     color: whitesmoke;
     display: block;
+    margin: auto auto 1em auto;
 }
 
 .calendar-title {
@@ -13,29 +14,30 @@
 .calendar-main {    
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;    
-    grid-template-rows: 3em 3em 3em 3em 3em;
 }
 
 .calendar-main .day {
     border: 1px solid $earth;
-    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.calendar-main .day button {
+    background: orangered;
+    min-height: 2em;
+    outline: 0;
 }
 
 .calendar-main .day.blank {
     background: $color4;
 } 
 
-.calendar-footer {
-    display: flex; 
-    flex-direction: row;
-}
-
 .calendar-footer button {
     background: $color2;
     border: 0;
     color: black;
     cursor: pointer;
-    font-size: 1em;
     margin: 0;
     outline: 0;
     padding: .5em;    
@@ -45,3 +47,16 @@
 .calendar-footer button:first-child {
     background: $color3;
 }
+
+.calendar-modal {
+    align-items: center;
+    background: rgba(1,1,1,.7);
+    min-height: 100vh;
+    justify-content: center;
+    position: fixed;
+        top: 0;
+        left: 0;
+    width: 100vw;
+    z-index: 3;
+}
+

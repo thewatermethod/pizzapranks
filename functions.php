@@ -6,6 +6,11 @@ require_once 'inc/pizzapranks_custom_post_types.php';
 function theme_js(){
   wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', true);
 
+  wp_localize_script( 'compiled-js', 'wpApiSettings', array(
+    'root' => esc_url_raw( rest_url() ),
+    'nonce' => wp_create_nonce( 'wp_rest' )
+   ) );
+
   wp_enqueue_script( 'compiled-js');
 }
 // Load CSS
