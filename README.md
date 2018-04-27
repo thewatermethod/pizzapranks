@@ -9,3 +9,5 @@ TO DO
 - separate look and feel of comic pages and give rest of site look and feel requested
 - custom calendar widget
 - ~~Evaluate need for bootstrap~~ there is no need
+- remove xml file from repo
+- calendar pages should load assets seperately
