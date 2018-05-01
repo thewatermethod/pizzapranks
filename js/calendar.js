@@ -14,6 +14,8 @@ if( document.querySelector('#calendarApp') ){
 				currentYear: '',
 
 				days: [],
+				
+				per_page: 31,	
 
 			},
 		
@@ -70,14 +72,19 @@ if( document.querySelector('#calendarApp') ){
 				},
 
 				fetchPixels: function(){
-
+					
 					var self = this;
+					self.pixels = [];
 
 					var calendarCategory = document.querySelector('#calendarCategory').value;
 					
-					var thisMonthAsNumber = self.thisMoment.format('M');
-												
-					fetch( wpApiSettings.root + 'wp/v2/media?posts_per_page=31&categories=' + calendarCategory + '&year=' + this.currentYear + '&monthnum=' + thisMonthAsNumber )
+					var thisMonthAsNumber = self.thisMoment.format('M');												
+
+					var per_page = 'per_page=' + self.per_page;
+
+					var url = wpApiSettings.root + 'wp/v2/media?' + per_page + '&categories=' + calendarCategory;					
+
+					fetch( url  )
 						.then(function(response) {
 							return response.json();
 						})
@@ -86,7 +93,7 @@ if( document.querySelector('#calendarApp') ){
 							for (var index = 0; index < pixels.length; index++) {
 
 								var pixel = pixels[index];						
-								self.pixels[ pixel.id ] =  pixel;
+								self.pixels.push( pixel );
 
 								for (var x = 0; x < self.days.length; x++) {
 
@@ -106,20 +113,36 @@ if( document.querySelector('#calendarApp') ){
 
 				nextMonth: function(){
 					this.thisMoment = this.thisMoment.add( 1, 'M' );
+					
+					if( this.per_page > 31 ){
+						this.per_page = this.per_page - 31;
+					} else {
+						this.per_page = 31;
+					}
+
 					this.recalculateCalendar();
 				},
 
 				previousMonth: function(){
 					this.thisMoment = this.thisMoment.subtract( 1, 'M' );
+					
+					if( this.per_page == 31 || this.per_page > 31){
+						this.per_page += 31;
+					} else {
+						this.per_page = 31;
+					}				
+					
 					this.recalculateCalendar();
 				},
 
-				showPixel: function( pixelId) {
-					var pixel = {};
-					pixel.title = this.pixels[pixelId].title.rendered; 
-					pixel.desc = this.pixels[pixelId].alt_text;
-					pixel.url = this.pixels[pixelId].media_details.sizes.full.source_url;
-					this.selectedPixel = pixel;
+				showPixel: function( key ) {
+					//console.log( key );
+					var pixel = this.days[key].pixel;
+					this.selectedPixel = {};
+					this.selectedPixel.title = pixel.title.rendered; 
+					this.selectedPixel.desc = pixel.alt_text;
+					this.selectedPixel.url = pixel.media_details.sizes.full.source_url;
+					
 				},
 
 				recalculateCalendar: function() {

@@ -4,18 +4,38 @@ require_once 'inc/pizzapranks_custom_post_types.php';
 
 // Load JS
 function theme_js(){
-  wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', true);
 
-  wp_localize_script( 'compiled-js', 'wpApiSettings', array(
-    'root' => esc_url_raw( rest_url() ),
-    'nonce' => wp_create_nonce( 'wp_rest' )
-   ) );
+    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', true);
 
-  wp_enqueue_script( 'compiled-js');
+    wp_localize_script( 'compiled-js', 'wpApiSettings', array(
+      'root' => esc_url_raw( rest_url() ),
+      'nonce' => wp_create_nonce( 'wp_rest' )
+     ) );
+  
+    wp_enqueue_script( 'compiled-js');
+  
+    if( is_post_type_archive( 'comic' ) || get_post_type() == 'comic' ){
+        wp_register_script( 'apple-kiwi', get_template_directory_uri().'/dist/js/apple-and-kiwi.js',array('jquery', 'compiled-js'),'false', true);
+    
+        wp_localize_script( 'apple-kiwi', 'wpApiSettings', array(
+          'root' => esc_url_raw( rest_url() ),
+          'nonce' => wp_create_nonce( 'wp_rest' )
+         ) );
+      
+        wp_enqueue_script( 'apple-kiwi');
+        
+    } 
 }
+
 // Load CSS
-function theme_styles() {
-    wp_enqueue_style('compiled-css', get_template_directory_uri().'/dist/css/compiled.css');
+function theme_styles() {    
+
+    if( is_post_type_archive( 'comic' ) || get_post_type() == 'comic' ){
+        wp_enqueue_style('apple-kiwi', get_template_directory_uri().'/dist/css/comics.css'); 
+    } else {
+        wp_enqueue_style('compiled', get_template_directory_uri().'/dist/css/compiled.css'); 
+    }
+       
 }
 
 // Register widgets

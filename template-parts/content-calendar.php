@@ -38,9 +38,9 @@
 			<div class="calendar-title">{{ currentMonth }} {{ currentYear }}</div>
 
 			<div class="calendar-main" :style="calendarGrid()">
-				<div v-for="day in days" :class="day.class" :data-moment="day.moment">
+				<div v-for="(day, key) in days" :class="day.class" :data-moment="day.moment">
 					{{day.day}}
-					<button v-if="day.pixel" v-on:click="showPixel( day.pixel.id )">
+					<button v-if="day.pixel" v-on:click="showPixel( key )">
 						Pixel
 					</button>
 				</div>
