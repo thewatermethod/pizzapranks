@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                  */
 
                 self.fetchComics();
+                
 
                 /**
                  *  Here is where everything else that needs to happen as the vue app loads should live          
@@ -66,9 +67,62 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                         });
 
+                 
+                 
                     
                 },
 
+                fetchImage: function( id ){                            
+                                              
+                    var url = wpApiSettings.root + 'wp/v2/media/' + id;					
+
+                    fetch( url )
+
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function( image ) {							                             
+                            var comic = document.getElementById(id);
+                            var minHeight = image.media_details.sizes.medium_large.height+25;
+                            comic.parentElement.setAttribute('style', 'min-height: ' + minHeight + 'px' )                          
+                            comic.setAttribute( "src", image.media_details.sizes.medium_large.source_url );                                
+                    });                  
+                },
+
+                fetchImages: function( id ){
+
+                    var comicImages = document.querySelectorAll('.comic-image');
+
+                    comicImages.forEach( function( el ){
+                        var id = el.dataset.src;
+                        var url = wpApiSettings.root + 'wp/v2/media/' + id;					
+
+                        console.log( url );
+                        
+                        fetch( url  )
+    
+                            .then(function(response) {
+                                return response.json();
+                            })
+                            .then(function( image ) {							 
+                                
+                                el.setAttribute( "src", image.media_details.sizes.medium_large.source_url );                                
+    
+                        });
+
+                    });
+
+                    
+                    
+                   
+
+                },
+
+                showMenu: function(){
+                    
+                    $('header.site-header div.main-menu').toggleClass('open');
+
+                },
     
                     
             } // closes methods

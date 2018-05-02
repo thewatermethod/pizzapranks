@@ -5,7 +5,7 @@ require_once 'inc/pizzapranks_custom_post_types.php';
 // Load JS
 function theme_js(){
 
-    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', true);
+    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', false);
 
     wp_localize_script( 'compiled-js', 'wpApiSettings', array(
       'root' => esc_url_raw( rest_url() ),
@@ -22,8 +22,7 @@ function theme_js(){
           'nonce' => wp_create_nonce( 'wp_rest' )
          ) );
       
-        wp_enqueue_script( 'apple-kiwi');
-        
+        wp_enqueue_script( 'apple-kiwi');        
     } 
 }
 
