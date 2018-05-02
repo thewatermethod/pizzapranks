@@ -89,39 +89,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     });                  
                 },
 
-                fetchImages: function( id ){
 
-                    var comicImages = document.querySelectorAll('.comic-image');
-
-                    comicImages.forEach( function( el ){
-                        var id = el.dataset.src;
-                        var url = wpApiSettings.root + 'wp/v2/media/' + id;					
-
-                        console.log( url );
-                        
-                        fetch( url  )
-    
-                            .then(function(response) {
-                                return response.json();
-                            })
-                            .then(function( image ) {							 
-                                
-                                el.setAttribute( "src", image.media_details.sizes.medium_large.source_url );                                
-    
-                        });
-
-                    });
-
-                    
-                    
-                   
-
+                loadMoreComics: function(){
+                    this.offset += this.per_page;
+                    this.fetchComics();
                 },
 
-                showMenu: function(){
-                    
-                    $('header.site-header div.main-menu').toggleClass('open');
-
+                showMenu: function(){                    
+                    jQuery('header.site-header div.main-menu').toggleClass('open');
                 },
     
                     
