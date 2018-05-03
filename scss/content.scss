@@ -5,22 +5,23 @@
     }    
 }
 
+article.post {
+    margin-bottom: 2em;
+}
+
 .meta-container{
-    display: flex;
+    border-bottom: 1px dotted $color1;
     font-family: VT323;
+    font-style: italic;
 
     span.meta-item {
         display: block;
         min-width: 33%;
+        text-align: center;
         text-transform: uppercase;
 
         a {
             text-decoration: underline;
         }
     }
-
-    span.posted-on {
-        font-style: italic;
-    }
-
 }

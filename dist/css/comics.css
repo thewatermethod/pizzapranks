@@ -31,33 +31,10 @@
   
   h1 {
     font-size: 2em;
-    margin: 0.67em 0;
+     margin: 0.67em 0;
   }
   
-  /* Grouping content
-     ========================================================================== */
-  
-  /**
-   * 1. Add the correct box sizing in Firefox.
-   * 2. Show the overflow in Edge and IE.
-   */
-  
-  hr {
-    box-sizing: content-box; /* 1 */
-    height: 0; /* 1 */
-    overflow: visible; /* 2 */
-  }
-  
-  /**
-   * 1. Correct the inheritance and scaling of font size in all browsers.
-   * 2. Correct the odd `em` font sizing in all browsers.
-   */
-  
-  pre {
-    font-family: monospace, monospace; /* 1 */
-    font-size: 1em; /* 2 */
-  }
-  
+ 
   /* Text-level semantics
      ========================================================================== */
   
@@ -89,17 +66,6 @@
     font-weight: bolder;
   }
   
-  /**
-   * 1. Correct the inheritance and scaling of font size in all browsers.
-   * 2. Correct the odd `em` font sizing in all browsers.
-   */
-  
-  code,
-  kbd,
-  samp {
-    font-family: monospace, monospace; /* 1 */
-    font-size: 1em; /* 2 */
-  }
   
   /**
    * Add the correct font size in all browsers.
@@ -108,28 +74,7 @@
   small {
     font-size: 80%;
   }
-  
-  /**
-   * Prevent `sub` and `sup` elements from affecting the line height in
-   * all browsers.
-   */
-  
-  sub,
-  sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-  
-  sub {
-    bottom: -0.25em;
-  }
-  
-  sup {
-    top: -0.5em;
-  }
-  
+
   /* Embedded content
      ========================================================================== */
   
@@ -222,30 +167,7 @@
     padding: 0.35em 0.75em 0.625em;
   }
   
-  /**
-   * 1. Correct the text wrapping in Edge and IE.
-   * 2. Correct the color inheritance from `fieldset` elements in IE.
-   * 3. Remove the padding so developers are not caught out when they zero out
-   *    `fieldset` elements in all browsers.
-   */
-  
-  legend {
-    box-sizing: border-box; /* 1 */
-    color: inherit; /* 2 */
-    display: table; /* 1 */
-    max-width: 100%; /* 1 */
-    padding: 0; /* 3 */
-    white-space: normal; /* 1 */
-  }
-  
-  /**
-   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
-   */
-  
-  progress {
-    vertical-align: baseline;
-  }
-  
+
   /**
    * Remove the default vertical scrollbar in IE 10+.
    */
@@ -302,35 +224,9 @@
     font: inherit; /* 2 */
   }
   
-  /* Interactive
-     ========================================================================== */
-  
-  /*
-   * Add the correct display in Edge, IE 10+, and Firefox.
-   */
-  
-  details {
-    display: block;
-  }
-  
-  /*
-   * Add the correct display in all browsers.
-   */
-  
-  summary {
-    display: list-item;
-  }
   
   /* Misc
      ========================================================================== */
-  
-  /**
-   * Add the correct display in IE 10+.
-   */
-  
-  template {
-    display: none;
-  }
   
   /**
    * Add the correct display in IE 10.
@@ -339,8 +235,9 @@
   [hidden] {
     display: none;
   }
+ 
   
-
+/** !-- Custom Comics CSS -- **/
 
 /**  Typography **/
 
@@ -379,8 +276,9 @@ h3, .h3 {
 h4, .h4 {
     font-size: 1.25em;
 }
-.site-header {
-    font-family: 'VT323', -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+.vt323 {
+  font-family: 'VT323', -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 /* Header */
@@ -391,12 +289,18 @@ header.site-header {
     border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-around;    
+    position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+    z-index: 2;
 }
 
 header.site-header svg {
+    cursor: pointer;
     fill: white;
     padding: 1em;
-    z-index: 3;
+    z-index: 4;
 }
 
 header.site-header .site-title {
@@ -446,9 +350,10 @@ header.site-header div.main-menu ul li {
 /* Content Area */
 
 .content-area {
-  margin: auto;
+  margin: 150px auto auto auto;
   max-width: 700px;
-  width: 100%;
+  width: 100%;  
+  z-index: 1;
 }
 
 .content-area article {
@@ -459,8 +364,12 @@ header.site-header div.main-menu ul li {
 }
 
 .content-area article h2 {
-  color: transparent;
   font-size: 3em;
+}
+
+.content-area article h2 a{
+  color: transparent;
+
   margin: 0;
   padding: 2em;
   position: absolute;
@@ -468,22 +377,29 @@ header.site-header div.main-menu ul li {
     left: 0;
     right: 0;
     top: 0;   
-    z-index: 1;
+  z-index: 1;
 }
 
-.content-area article:hover h2 {
+.content-area article:hover h2 a{
   background: rgba( 1,1,1, .5);
   color: white;
-
 }
 
-.content-area article img {  
+.content-area article img{
+  height: auto;
   max-width: 100%;
+}
+
+/* Images in archive-comic*/
+.post-type-archive-comic .content-area article img {   
   position: absolute;
     top: 0;
     left: 0;
     right:0;
 }
+
+
+
 
 .content-area article .entry-meta{
   text-align: center;

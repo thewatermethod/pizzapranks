@@ -31,15 +31,9 @@
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif; ?>
 
-		<div class="meta-container">
+		<div class="meta-container flex">
 
-			<?php if( $game_price ) { ?>
-				<span class="meta-item meta-price"><?php echo $game_price; ?></span>
-			<?php }
-
-			if( $download_link ) { ?>
-				<span class="meta-item meta-link"><a href="<?php echo $download_link; ?>">Download</a></span>
-			<?php } 
+			<?php
 
 			$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 			if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
@@ -59,6 +53,16 @@
 
 			echo '<span class="meta-item posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK. ?>
 
+			<?php if( $game_price ) { ?>
+				<span class="meta-item meta-price"><?php echo $game_price; ?></span>
+			<?php }
+
+
+
+
+			if( $download_link ) { ?>
+				<span class="meta-item meta-link"><a href="<?php echo $download_link; ?>">Download</a></span>
+			<?php } ?>
 
 	    </div>
 			
