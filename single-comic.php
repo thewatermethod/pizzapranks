@@ -23,8 +23,7 @@
 		</header>	
 
 
-
-		<div id="primary" class="content-area">
+		<div id="primary" class="content-area"><!--<?php echo get_post_type(); ?> -->
 			
 			<main id="main" class="site-main">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -35,32 +34,25 @@
 					<section>
 						<h1><a href = '<?php the_permalink(); ?>' title='<?php the_title(); ?>'><?php the_title(); ?></a></h1>
 						<?php the_content(); ?>
-					</section>
+						<?php the_post_thumbnail('medium_large'); ?>
+					</section>			
+						
+					
+					<aside class="comics-navigation">
 
+						<ul>
+							<?php the_previous_comic(); ?>
+							<li><a href="<?php the_oldest_comic(); ?>">Read from the beginning</a></li>		
+							<li><a href="<?php the_random_comic(); ?>">Read a random comic</a></li>					
+							<li><a href="<?php the_newest_comic(); ?>">Newest Comic</a></li>				
+							<?php the_next_comic(); ?>				
+							
+						</ul>
 
-					<section>
-						<div class="comics-navigation btn-group" role="group">	
-							<button type="button" class="btn btn-default"><?php echo previous_post_link('%link', 'Previous', false); ?></button>
-							<button type="button" class="btn btn-default"><a href="<?php echo the_oldest_comic(); ?>">First</a></button>
-							<button type="button" class="btn btn-default"><a href="<?php echo random_comic(); ?>">Random</a></button>
-							<button type="button" class="btn btn-default"><a href="<?php echo the_newest_comic(); ?>">Last</a></button>
-							<button type="button" class="btn btn-default"><?php echo next_post_link('%link', 'Next', false); ?></button>
-						</div>
-					</section>	
+						<a href="<?php the_post_thumbnail_url(); ?>">See the Full Size Comic</a>
 
-					<section>
-						<?php the_post_thumbnail('medium-large'); ?>
-					</section>
+					</aside>
 
-					<section>
-						<div class="comics-navigation btn-group" role="group">	
-							<button type="button" class="btn btn-default"><?php echo previous_post_link('%link', 'Previous', false); ?></button>
-							<button type="button" class="btn btn-default"><a href="<?php echo the_oldest_comic(); ?>">First</a></button>
-							<button type="button" class="btn btn-default"><a href="<?php echo random_comic(); ?>">Random</a></button>
-							<button type="button" class="btn btn-default"><a href="<?php echo the_newest_comic(); ?>">Last</a></button>
-							<button type="button" class="btn btn-default"><?php echo next_post_link('%link', 'Next', false); ?></button>
-						</div>
-					</section>	
 
 				</article>
 

@@ -10,9 +10,7 @@ function theme_js(){
     wp_localize_script( 'compiled-js', 'wpApiSettings', array(
       'root' => esc_url_raw( rest_url() ),
       'nonce' => wp_create_nonce( 'wp_rest' )
-     ) );
-  
-    wp_enqueue_script( 'compiled-js');
+     ) );   
   
     if( is_post_type_archive( 'comic' ) || get_post_type() == 'comic' ){
         wp_register_script( 'apple-kiwi', get_template_directory_uri().'/dist/js/apple-and-kiwi.js',array('jquery', 'compiled-js'),'false', true);
@@ -23,7 +21,11 @@ function theme_js(){
          ) );
       
         wp_enqueue_script( 'apple-kiwi');        
+        return;
     } 
+
+    wp_enqueue_script( 'compiled-js');
+
 }
 
 // Load CSS
@@ -60,27 +62,7 @@ function pizzapranks_widgets_init() {
 }
 add_action( 'widgets_init', 'pizzapranks_widgets_init' );
 
-//Handling random comic
-function random_add_rewrite() {
-      global $wp;
-      $wp->add_query_var('random');
-      add_rewrite_rule('random/?$', 'index.php?random=1', 'top');
-}
-
-function random_template() {
-    if (get_query_var('random') == 1) {
-      $posts = get_posts('post_type=post&orderby=rand&numberposts=1');
-      foreach($posts as $post) {
-              $link = get_permalink($post);
-      }
-      wp_redirect($link,307);
-      exit;
-    }
-}
-
 function the_oldest_comic(){
-   global $post;
-    $tmp_post = $post;
     $args = array(
         'numberposts'     => 1,
         'offset'          => 0,
@@ -88,15 +70,14 @@ function the_oldest_comic(){
         'order'           => 'ASC',
         'post_type'       => 'comic',
         'post_status'     => 'publish' );
-    $myposts = get_posts( $args );
-    $permalink = get_permalink($myposts[0]->ID);
-    $post = $tmp_post;
-    return $permalink;
+    $comics = get_posts( $args );
+    $permalink = get_permalink($comics[0]->ID);
+
+    echo $permalink;
 }
 
 function the_newest_comic(){
-   global $post;
-    $tmp_post = $post;
+
     $args = array(
         'numberposts'     => 1,
         'offset'          => 0,
@@ -106,47 +87,13 @@ function the_newest_comic(){
         'post_status'     => 'publish' );
     $myposts = get_posts( $args );
     $permalink = get_permalink($myposts[0]->ID);
-    $post = $tmp_post;
-    return $permalink;
+    echo $permalink;
 }
 
 	
-function the_oldest_chapter(){
-    global $post;
-    $tmp_post = $post;
-    $args = array(
-        'numberposts'     => 1,
-        'offset'          => 0,
-        'orderby'         => 'post_date',
-        'order'           => 'ASC',
-        'post_type'       => 'chapter',
-        'post_status'     => 'publish' );
-    $myposts = get_posts( $args );
-    $permalink = get_permalink($myposts[0]->ID);
-    $post = $tmp_post;
-    return $permalink;
-}
 
-function the_newest_chapter(){
-   global $post;
-    $tmp_post = $post;
-    $args = array(
-        'numberposts'     => 1,
-        'offset'          => 0,
-        'orderby'         => 'post_date',
-        'order'           => 'DESC',
-        'post_type'       => 'chapter',
-        'post_status'     => 'publish' );
-    $myposts = get_posts( $args );
-    $permalink = get_permalink($myposts[0]->ID);
-    $post = $tmp_post;
-    return $permalink;
-}
+function the_random_comic(){
 
-
-function random_comic(){
-   global $post;
-    $tmp_post = $post;
     $args = array(
         'numberposts'     => 1,
         'offset'          => 0,
@@ -155,9 +102,8 @@ function random_comic(){
         'post_type'       => 'comic',
         'post_status'     => 'publish' );
     $myposts = get_posts( $args );
-	  $permalink = get_permalink($myposts[0]->ID);
-    $post = $tmp_post;
-    return $permalink;
+    $permalink = get_permalink($myposts[0]->ID);
+    echo $permalink;
 }
 
 //Add menu support
@@ -170,12 +116,10 @@ function register_my_menus() {
 	);
 }
 
-add_action('init','random_add_rewrite');
 add_action('wp_enqueue_scripts', 'theme_styles');
 add_action('wp_enqueue_scripts', 'theme_js');
 add_theme_support( 'post-thumbnails' ); 
 add_action( 'init', 'register_my_menus' );
-add_action('template_redirect','random_template');
 
 // gets the first image if you call it within the loop
 function catch_that_image() {
@@ -187,6 +131,38 @@ function catch_that_image() {
     $first_img = $matches[1][0];
     return $first_img;
 }	
+
+function the_next_comic(){
+
+    $the_next_comic = get_adjacent_post(false, '', false);
+
+    if( $the_next_comic == '' ){
+        return;
+    }
+    
+    $permalink = get_the_permalink( $the_next_comic );
+
+    if( $permalink ){ ?>
+        <li><a href="<?php echo $permalink;?>">Next Comic</a></li>
+    <?php
+    }
+
+}
+
+function the_previous_comic(){
+    $the_previous_comic = get_adjacent_post(false, '', true);
+    
+    if( $the_previous_comic == '' ){
+        return;
+    }
+
+    $permalink = get_the_permalink( $the_previous_comic );
+    
+    if( $permalink ){ ?>
+        <li><a href="<?php echo $permalink;?>">Previous Comic</a></li>
+    <?php
+    }
+}
 
 
 /**

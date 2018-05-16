@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+window.onload = function() {
 
     if( document.querySelector('#apple-and-kiwi') ){
 
@@ -84,7 +84,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                         .then(function( image ) {							                             
                             var comic = document.getElementById(id);
                             var minHeight = image.media_details.sizes.medium_large.height+25;
-                            comic.parentElement.setAttribute('style', 'min-height: ' + minHeight + 'px' )                          
+                            if( window.innerWidth > 1000 ){
+                                comic.parentElement.setAttribute('style', 'min-height: ' + minHeight + 'px' )                          
+                            }
                             comic.setAttribute( "src", image.media_details.sizes.medium_large.source_url );                                
                     });                  
                 },
@@ -106,4 +108,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     } // closes document.querySelector
 
-}); // closes document event listener
+}; // closes window on load

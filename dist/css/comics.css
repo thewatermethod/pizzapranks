@@ -363,6 +363,7 @@ header.site-header div.main-menu ul li {
   position: relative;
 }
 
+
 .content-area article h2 {
   font-size: 3em;
 }
@@ -398,10 +399,17 @@ header.site-header div.main-menu ul li {
     right:0;
 }
 
-
-
-
 .content-area article .entry-meta{
   text-align: center;
   z-index: 3;
+}
+
+
+/* Single comic styling */
+.single-comic .content-area {
+  max-width: 950px;
+}
+
+.content-area article.single-comic {
+  flex-direction: row;
 }
