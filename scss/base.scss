@@ -2,7 +2,12 @@ body {
     background:$earth;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 img {
+	height: auto;
 	max-width: 100%;	
 }
 .alignleft {
@@ -22,5 +27,9 @@ img {
     display: block;
 	margin-left: auto;
     margin-right: auto;
+}
+
+.centered-text {
+	text-align: center;
 }
 

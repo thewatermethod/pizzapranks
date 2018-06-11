@@ -61,7 +61,7 @@
 
 
 			if( $download_link ) { ?>
-				<span class="meta-item meta-link"><a href="<?php echo $download_link; ?>">Download</a></span>
+				<span class="meta-item meta-link"><a style="border-bottom: 0;text-decoration: none;" href="<?php echo $download_link; ?>">Download</a></span>
 			<?php } ?>
 
 	    </div>

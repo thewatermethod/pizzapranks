@@ -83,10 +83,6 @@ window.onload = function() {
                         })
                         .then(function( image ) {							                             
                             var comic = document.getElementById(id);
-                            var minHeight = image.media_details.sizes.medium_large.height+25;
-                            if( window.innerWidth > 1000 ){
-                                comic.parentElement.setAttribute('style', 'min-height: ' + minHeight + 'px' )                          
-                            }
                             comic.setAttribute( "src", image.media_details.sizes.medium_large.source_url );                                
                     });                  
                 },

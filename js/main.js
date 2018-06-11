@@ -1,6 +1,6 @@
 (function($) {   
 
-    var fonts = ['VT323'];
+    var fonts = ['VT323', 'Slabo 27px'];
     loadFonts( fonts ); 
 
     $headerSiteHeader = jQuery('header.site-header');
@@ -17,8 +17,12 @@
         }
      } );
 
+     $headerSiteHeader.click( function(){
+         console.log('test');
+     });
 
-     $('#menuToggle').click( function(){
+
+     $('#menuToggle').click( function(){      
         $(this).toggleClass('toggled');
         $('header.site-header .main-menu').toggleClass('open');
      });

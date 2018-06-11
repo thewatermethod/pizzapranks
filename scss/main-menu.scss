@@ -24,6 +24,11 @@ header.site-header div.main-menu {
         }
 
         @media( max-width: 900px ){            
+
+            li {
+                margin: 1em auto;
+            }
+
             width: 100%;
         }
 

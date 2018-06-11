@@ -1,9 +1,0 @@
-body.home, body.archive {
-
-    article.post {       
-        padding: 1em;    
-        &:nth-child(even) {
-            background: lighten( $color2, 26% );        
-        }
-    }
-}

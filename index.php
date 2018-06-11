@@ -13,7 +13,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area grid">
 		
 		<main id="main" class="site-main">
 
@@ -37,6 +37,12 @@ get_header(); ?>
 		<?php get_sidebar('left');?>
 		<?php get_sidebar('right'); ?>
 	</div><!-- #primary -->
+
+	<?php if( is_single() ):?>
+		<div class="comments">
+			<?php comments_template(); ?>
+		</div>
+	<?php endif;?>
 
 <?php
 

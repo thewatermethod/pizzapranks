@@ -55,7 +55,7 @@
 				<h2>{{selectedPixel.title}}</h2>
 				<img :src="selectedPixel.url" alt="">
 				<p>{{selectedPixel.desc}}</p>
-				<button class="h3" v-on:click="backToCalendar()">Close</button>
+				<button class="comics-nav" v-on:click="backToCalendar()">Close</button>
 			</div>
 
 

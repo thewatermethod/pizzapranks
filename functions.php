@@ -12,7 +12,7 @@ function theme_js(){
       'nonce' => wp_create_nonce( 'wp_rest' )
      ) );   
   
-    if( is_post_type_archive( 'comic' ) || get_post_type() == 'comic' ){
+    if( is_comic() ){
         wp_register_script( 'apple-kiwi', get_template_directory_uri().'/dist/js/apple-and-kiwi.js',array('jquery', 'compiled-js'),'false', true);
     
         wp_localize_script( 'apple-kiwi', 'wpApiSettings', array(
@@ -30,13 +30,11 @@ function theme_js(){
 
 // Load CSS
 function theme_styles() {    
+ 
+    wp_enqueue_style('compiled', get_template_directory_uri().'/dist/css/compiled.css');     
+      
+    //todo - editorstyles.css
 
-    if( is_post_type_archive( 'comic' ) || get_post_type() == 'comic' ){
-        wp_enqueue_style('apple-kiwi', get_template_directory_uri().'/dist/css/comics.css'); 
-    } else {
-        wp_enqueue_style('compiled', get_template_directory_uri().'/dist/css/compiled.css'); 
-    }
-       
 }
 
 // Register widgets
@@ -118,19 +116,13 @@ function register_my_menus() {
 
 add_action('wp_enqueue_scripts', 'theme_styles');
 add_action('wp_enqueue_scripts', 'theme_js');
-add_theme_support( 'post-thumbnails' ); 
 add_action( 'init', 'register_my_menus' );
 
-// gets the first image if you call it within the loop
-function catch_that_image() {
-    global $post, $posts;
-    $first_img = '';
-    ob_start();
-    ob_end_clean();
-    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-    $first_img = $matches[1][0];
-    return $first_img;
-}	
+
+/**
+ *  Some stuff to make the comics nav links
+ * 
+ */
 
 function the_next_comic(){
 
@@ -164,6 +156,17 @@ function the_previous_comic(){
     }
 }
 
+/**
+ * A little helper to see if we are on a comics page
+ */
+
+function is_comic(){
+    if( is_post_type_archive( 'comic' ) || get_post_type() == 'comic' ){
+        return true;
+    }
+    return false;
+}
+
 
 /**
  * Load Jetpack compatibility file.
@@ -178,11 +181,41 @@ function add_async_attribute($tag, $handle) {
 
 add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
 
+/**
+ * Adds the meta box to the posts (download links, etc)
+ */
+
 require get_template_directory() . '/inc/class-pizzapranks-post-metabox.php';
 
-//todo - editorstyles.css
+
 
 function pp_add_categories_to_attachments() {
     register_taxonomy_for_object_type( 'category', 'attachment' );
 }
 add_action( 'init' , 'pp_add_categories_to_attachments' );
+
+
+
+// REMOVE WP EMOJI
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+// Add some basic theme support stuff
+add_theme_support( 'title-tag' );
+add_theme_support( 'automatic-feed-links' );
+add_theme_support( 'post-thumbnails' ); 
+
+/*
+    * Switch default core markup for search form, comment form, and comments
+    * to output valid HTML5.
+    */
+add_theme_support( 'html5', array(
+    'search-form',
+    'comment-form',
+    'comment-list',
+    'gallery',
+    'caption',
+) );

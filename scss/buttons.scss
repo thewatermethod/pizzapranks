@@ -1,0 +1,12 @@
+button.comics-nav, input[value="Post Comment"]{
+    background: $color4;
+    color: white;
+    font-family: 'Slabo 27px';
+    font-size: 1.5em;
+}
+
+/* comments */
+label[for="comment"]{
+    display: block;
+    width: 100%;
+}
