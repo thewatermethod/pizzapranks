@@ -187,8 +187,6 @@ add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
 
 require get_template_directory() . '/inc/class-pizzapranks-post-metabox.php';
 
-
-
 function pp_add_categories_to_attachments() {
     register_taxonomy_for_object_type( 'category', 'attachment' );
 }

@@ -1,27 +1,17 @@
-
 .entry-title {
-    a {
-        border-bottom: 0;
-    }    
+  a {
+    border-bottom: 0;
+  }
 }
 
 article.post {
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
-.meta-container{
-    border-bottom: 1px dotted $color1;
-    font-family: VT323;
-    font-style: italic;
+.meta-container {
+  font-family: VT323;
 
-    span.meta-item {
-        display: block;
-        min-width: 33%;
-        text-align: center;
-        text-transform: uppercase;
-
-        a {
-            text-decoration: underline;
-        }
-    }
+  a {
+    text-decoration: underline;
+  }
 }
