@@ -217,3 +217,56 @@ add_theme_support( 'html5', array(
     'gallery',
     'caption',
 ) );
+
+
+// some light cleanup
+
+function pp_after_setup_theme() {
+    // add a custom image size for the calendar        
+    add_image_size( 'calendar', 32, 32, false );
+}
+
+add_action('after_setup_theme', 'pp_after_setup_theme');
+
+
+/**
+ *
+ * @param $form_fields array, fields to include in attachment form
+ * @param $post object, attachment record in database
+ * @return $form_fields, modified form fields
+ */
+  
+function pp_attachment_date_changer( $form_fields, $post ) {
+    $form_fields['pp_upload_date'] = array(
+        'label' => 'New Upload Date',
+        'input' => 'text',
+        'value' => get_post_meta( $post->ID, 'pp_upload_date', true ),
+        'helps' => 'Date formatted like "MM/DD/YYYY"',
+    );
+ 
+    return $form_fields;
+}
+ 
+add_filter( 'attachment_fields_to_edit', 'pp_attachment_date_changer', 10, 2 );
+ 
+/**
+ *
+ * @param $post array, the post data for database
+ * @param $attachment array, attachment fields from $_POST form
+ * @return $post array, modified post data
+ */
+ 
+function pp_attachment_field_date_save( $post, $attachment ) {
+    if( isset( $attachment['pp_upload_date'] ) )
+        update_post_meta( $post['ID'],'pp_upload_date', $attachment['pp_upload_date'] );
+ 
+    return $post;
+}
+ 
+add_filter( 'attachment_fields_to_save', 'pp_attachment_field_date_save', 10, 2 );
+
+function pp_register_meta() {
+    register_meta( 'post', 'pp_upload_date', array('show_in_rest'=> true, 'single'=>true), null );
+}
+
+add_action('rest_api_init', 'pp_register_meta');
