@@ -30,7 +30,8 @@ get_header(); ?>
 
 			/* Start the Loop */
 			while ( have_posts() ) : the_post(); 				
-				get_template_part( 'template-parts/content', get_post_format() );
+			
+				get_template_part( 'template-parts/content', get_post_type() );
 			endwhile; ?>
 		<?php endif; ?>
 		</main><!-- #main -->
