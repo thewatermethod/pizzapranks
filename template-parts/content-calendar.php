@@ -41,7 +41,7 @@
 				<div v-for="(day, key) in days" :class="day.class" :data-moment="day.moment">
 					{{day.day}}
 					<button v-if="day.pixel" v-on:click="showPixel( key )">
-						Pixel
+						<img :src="day.pixel.media_details.sizes.calendar.source_url" alt="" />
 					</button>
 				</div>
 			</div>
@@ -51,10 +51,14 @@
 				<button class="body" v-on:click="nextMonth()">Next Month</button>
 			</div>
 
-			<div v-if="selectedPixel" class="calendar-modal flex flex-column">
+			<div v-if="selectedPixel" class="calendar-modal flex flex-column" @click="backToCalendar">
 				<h2>{{selectedPixel.title}}</h2>
 				<img :src="selectedPixel.url" alt="">
 				<p>{{selectedPixel.desc}}</p>
+				<div class="button-wrapper">
+					<button @click="previous(selectedPixel)"><</button>
+					<button @click="next(selectedPixel)">></button>			
+				</div>	
 				<button style="position: fixed; bottom: 0; left: 0;" class="comics-nav" v-on:click="backToCalendar()">Close</button>
 			</div>
 
