@@ -1,9 +1,5 @@
 /*!
-<<<<<<< HEAD
  * Vue.js v2.6.11
-=======
- * Vue.js v2.6.10
->>>>>>> master
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -1973,11 +1969,7 @@
     isUsingMicroTask = true;
   } else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
     // Fallback to setImmediate.
-<<<<<<< HEAD
     // Technically it leverages the (macro) task queue,
-=======
-    // Techinically it leverages the (macro) task queue,
->>>>>>> master
     // but it is still a better choice than setTimeout.
     timerFunc = function () {
       setImmediate(flushCallbacks);
@@ -2066,11 +2058,7 @@
       warn(
         "Property \"" + key + "\" must be accessed with \"$data." + key + "\" because " +
         'properties starting with "$" or "_" are not proxied in the Vue instance to ' +
-<<<<<<< HEAD
         'prevent conflicts with Vue internals. ' +
-=======
-        'prevent conflicts with Vue internals' +
->>>>>>> master
         'See: https://vuejs.org/v2/api/#data',
         target
       );
@@ -2930,11 +2918,7 @@
       if (typeof key === 'string' && key) {
         baseObj[values[i]] = values[i + 1];
       } else if (key !== '' && key !== null) {
-<<<<<<< HEAD
         // null is a special value for explicitly removing a binding
-=======
-        // null is a speical value for explicitly removing a binding
->>>>>>> master
         warn(
           ("Invalid value for dynamic directive argument (expected string or null): " + key),
           this
@@ -3429,15 +3413,12 @@
       ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
       if (config.isReservedTag(tag)) {
         // platform built-in elements
-<<<<<<< HEAD
         if (isDef(data) && isDef(data.nativeOn)) {
           warn(
             ("The .native modifier for v-on is only valid on components but it was used on <" + tag + ">."),
             context
           );
         }
-=======
->>>>>>> master
         vnode = new VNode(
           config.parsePlatformTagName(tag), data, children,
           undefined, undefined, context
@@ -3563,11 +3544,7 @@
       // render self
       var vnode;
       try {
-<<<<<<< HEAD
         // There's no need to maintain a stack because all render fns are called
-=======
-        // There's no need to maintain a stack becaues all render fns are called
->>>>>>> master
         // separately from one another. Nested component's render fns are called
         // when parent component is patched.
         currentRenderingInstance = vm;
@@ -3619,7 +3596,6 @@
       (hasSymbol && comp[Symbol.toStringTag] === 'Module')
     ) {
       comp = comp.default;
-<<<<<<< HEAD
     }
     return isObject(comp)
       ? base.extend(comp)
@@ -3656,44 +3632,6 @@
       // already pending
       factory.owners.push(owner);
     }
-=======
-    }
-    return isObject(comp)
-      ? base.extend(comp)
-      : comp
-  }
-
-  function createAsyncPlaceholder (
-    factory,
-    data,
-    context,
-    children,
-    tag
-  ) {
-    var node = createEmptyVNode();
-    node.asyncFactory = factory;
-    node.asyncMeta = { data: data, context: context, children: children, tag: tag };
-    return node
-  }
-
-  function resolveAsyncComponent (
-    factory,
-    baseCtor
-  ) {
-    if (isTrue(factory.error) && isDef(factory.errorComp)) {
-      return factory.errorComp
-    }
-
-    if (isDef(factory.resolved)) {
-      return factory.resolved
-    }
-
-    var owner = currentRenderingInstance;
-    if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
-      // already pending
-      factory.owners.push(owner);
-    }
->>>>>>> master
 
     if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
       return factory.loadingComp
@@ -5505,11 +5443,7 @@
     value: FunctionalRenderContext
   });
 
-<<<<<<< HEAD
   Vue.version = '2.6.11';
-=======
-  Vue.version = '2.6.10';
->>>>>>> master
 
   /*  */
 
@@ -6182,11 +6116,7 @@
       }
     }
 
-<<<<<<< HEAD
     function removeVnodes (vnodes, startIdx, endIdx) {
-=======
-    function removeVnodes (parentElm, vnodes, startIdx, endIdx) {
->>>>>>> master
       for (; startIdx <= endIdx; ++startIdx) {
         var ch = vnodes[startIdx];
         if (isDef(ch)) {
@@ -6297,11 +6227,7 @@
         refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
         addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
       } else if (newStartIdx > newEndIdx) {
-<<<<<<< HEAD
         removeVnodes(oldCh, oldStartIdx, oldEndIdx);
-=======
-        removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
->>>>>>> master
       }
     }
 
@@ -6393,11 +6319,7 @@
           if (isDef(oldVnode.text)) { nodeOps.setTextContent(elm, ''); }
           addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
         } else if (isDef(oldCh)) {
-<<<<<<< HEAD
           removeVnodes(oldCh, 0, oldCh.length - 1);
-=======
-          removeVnodes(elm, oldCh, 0, oldCh.length - 1);
->>>>>>> master
         } else if (isDef(oldVnode.text)) {
           nodeOps.setTextContent(elm, '');
         }
@@ -6626,11 +6548,7 @@
 
           // destroy old node
           if (isDef(parentElm)) {
-<<<<<<< HEAD
             removeVnodes([oldVnode], 0, 0);
-=======
-            removeVnodes(parentElm, [oldVnode], 0, 0);
->>>>>>> master
           } else if (isDef(oldVnode.tag)) {
             invokeDestroyHook(oldVnode);
           }
@@ -7195,17 +7113,10 @@
           break
         }
       }
-<<<<<<< HEAD
     }
     if (removeFromMap) {
       delete el.attrsMap[name];
     }
-=======
-    }
-    if (removeFromMap) {
-      delete el.attrsMap[name];
-    }
->>>>>>> master
     return val
   }
 
@@ -7270,7 +7181,6 @@
       expression: JSON.stringify(value),
       callback: ("function (" + baseValueExpression + ") {" + assignment + "}")
     };
-<<<<<<< HEAD
   }
 
   /**
@@ -7347,84 +7257,6 @@
     }
   }
 
-=======
-  }
-
-  /**
-   * Cross-platform codegen helper for generating v-model value assignment code.
-   */
-  function genAssignmentCode (
-    value,
-    assignment
-  ) {
-    var res = parseModel(value);
-    if (res.key === null) {
-      return (value + "=" + assignment)
-    } else {
-      return ("$set(" + (res.exp) + ", " + (res.key) + ", " + assignment + ")")
-    }
-  }
-
-  /**
-   * Parse a v-model expression into a base path and a final key segment.
-   * Handles both dot-path and possible square brackets.
-   *
-   * Possible cases:
-   *
-   * - test
-   * - test[key]
-   * - test[test1[key]]
-   * - test["a"][key]
-   * - xxx.test[a[a].test1[key]]
-   * - test.xxx.a["asa"][test1[key]]
-   *
-   */
-
-  var len, str, chr, index$1, expressionPos, expressionEndPos;
-
-
-
-  function parseModel (val) {
-    // Fix https://github.com/vuejs/vue/pull/7730
-    // allow v-model="obj.val " (trailing whitespace)
-    val = val.trim();
-    len = val.length;
-
-    if (val.indexOf('[') < 0 || val.lastIndexOf(']') < len - 1) {
-      index$1 = val.lastIndexOf('.');
-      if (index$1 > -1) {
-        return {
-          exp: val.slice(0, index$1),
-          key: '"' + val.slice(index$1 + 1) + '"'
-        }
-      } else {
-        return {
-          exp: val,
-          key: null
-        }
-      }
-    }
-
-    str = val;
-    index$1 = expressionPos = expressionEndPos = 0;
-
-    while (!eof()) {
-      chr = next();
-      /* istanbul ignore if */
-      if (isStringStart(chr)) {
-        parseString(chr);
-      } else if (chr === 0x5B) {
-        parseBracket(chr);
-      }
-    }
-
-    return {
-      exp: val.slice(0, expressionPos),
-      key: val.slice(expressionPos + 1, expressionEndPos)
-    }
-  }
-
->>>>>>> master
   function next () {
     return str.charCodeAt(++index$1)
   }
@@ -7809,17 +7641,10 @@
         var svg = svgContainer.firstChild;
         while (elm.firstChild) {
           elm.removeChild(elm.firstChild);
-<<<<<<< HEAD
         }
         while (svg.firstChild) {
           elm.appendChild(svg.firstChild);
         }
-=======
-        }
-        while (svg.firstChild) {
-          elm.appendChild(svg.firstChild);
-        }
->>>>>>> master
       } else if (
         // skip the update if old and new VDOM state is the same.
         // `value` is handled separately because the DOM value may be temporarily
@@ -7863,17 +7688,10 @@
     if (isDef(modifiers)) {
       if (modifiers.number) {
         return toNumber(value) !== toNumber(newVal)
-<<<<<<< HEAD
       }
       if (modifiers.trim) {
         return value.trim() !== newVal.trim()
       }
-=======
-      }
-      if (modifiers.trim) {
-        return value.trim() !== newVal.trim()
-      }
->>>>>>> master
     }
     return value !== newVal
   }
@@ -8038,7 +7856,6 @@
       }
     }
   }
-<<<<<<< HEAD
 
   var style = {
     create: updateStyle,
@@ -8049,18 +7866,6 @@
 
   var whitespaceRE = /\s+/;
 
-=======
-
-  var style = {
-    create: updateStyle,
-    update: updateStyle
-  };
-
-  /*  */
-
-  var whitespaceRE = /\s+/;
-
->>>>>>> master
   /**
    * Add class with compatibility for SVG since classList is not supported on
    * SVG elements in IE
@@ -8175,7 +7980,6 @@
       animationEndEvent = 'webkitAnimationEnd';
     }
   }
-<<<<<<< HEAD
 
   // binding to window is necessary to make hot reload work in IE in strict mode
   var raf = inBrowser
@@ -8184,16 +7988,6 @@
       : setTimeout
     : /* istanbul ignore next */ function (fn) { return fn(); };
 
-=======
-
-  // binding to window is necessary to make hot reload work in IE in strict mode
-  var raf = inBrowser
-    ? window.requestAnimationFrame
-      ? window.requestAnimationFrame.bind(window)
-      : setTimeout
-    : /* istanbul ignore next */ function (fn) { return fn(); };
-
->>>>>>> master
   function nextFrame (fn) {
     raf(function () {
       raf(fn);
@@ -9165,7 +8959,6 @@
 
     methods: {
       hasMove: function hasMove (el, moveClass) {
-<<<<<<< HEAD
         /* istanbul ignore if */
         if (!hasTransition) {
           return false
@@ -9183,25 +8976,6 @@
         if (el._transitionClasses) {
           el._transitionClasses.forEach(function (cls) { removeClass(clone, cls); });
         }
-=======
-        /* istanbul ignore if */
-        if (!hasTransition) {
-          return false
-        }
-        /* istanbul ignore if */
-        if (this._hasMove) {
-          return this._hasMove
-        }
-        // Detect whether an element with the move class applied has
-        // CSS transitions. Since the element may be inside an entering
-        // transition at this very moment, we make a clone of it and remove
-        // all other transition classes applied to ensure only the move class
-        // is applied.
-        var clone = el.cloneNode();
-        if (el._transitionClasses) {
-          el._transitionClasses.forEach(function (cls) { removeClass(clone, cls); });
-        }
->>>>>>> master
         addClass(clone, moveClass);
         clone.style.display = 'none';
         this.$el.appendChild(clone);
@@ -9374,17 +9148,10 @@
     var data = '';
     if (el.staticClass) {
       data += "staticClass:" + (el.staticClass) + ",";
-<<<<<<< HEAD
     }
     if (el.classBinding) {
       data += "class:" + (el.classBinding) + ",";
     }
-=======
-    }
-    if (el.classBinding) {
-      data += "class:" + (el.classBinding) + ",";
-    }
->>>>>>> master
     return data
   }
 
@@ -9426,17 +9193,10 @@
     var data = '';
     if (el.staticStyle) {
       data += "staticStyle:" + (el.staticStyle) + ",";
-<<<<<<< HEAD
     }
     if (el.styleBinding) {
       data += "style:(" + (el.styleBinding) + "),";
     }
-=======
-    }
-    if (el.styleBinding) {
-      data += "style:(" + (el.styleBinding) + "),";
-    }
->>>>>>> master
     return data
   }
 
@@ -9494,11 +9254,7 @@
   var startTagClose = /^\s*(\/?)>/;
   var endTag = new RegExp(("^<\\/" + qnameCapture + "[^>]*>"));
   var doctype = /^<!DOCTYPE [^>]+>/i;
-<<<<<<< HEAD
   // #7298: escape - to avoid being passed as HTML comment when inlined in page
-=======
-  // #7298: escape - to avoid being pased as HTML comment when inlined in page
->>>>>>> master
   var comment = /^<!\--/;
   var conditionalComment = /^<!\[/;
 
@@ -9783,11 +9539,7 @@
   /*  */
 
   var onRE = /^@|^v-on:/;
-<<<<<<< HEAD
   var dirRE = /^v-|^@|^:|^#/;
-=======
-  var dirRE = /^v-|^@|^:/;
->>>>>>> master
   var forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
   var forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
   var stripParensRE = /^\(|\)$/g;
@@ -10411,11 +10163,7 @@
             if (el.parent && !maybeComponent(el.parent)) {
               warn$2(
                 "<template v-slot> can only appear at the root level inside " +
-<<<<<<< HEAD
                 "the receiving component",
-=======
-                "the receiving the component",
->>>>>>> master
                 el
               );
             }
@@ -10801,7 +10549,6 @@
   function cloneASTElement (el) {
     return createASTElement(el.tag, el.attrsList.slice(), el.parent)
   }
-<<<<<<< HEAD
 
   var model$1 = {
     preTransformNode: preTransformNode
@@ -10815,21 +10562,6 @@
 
   /*  */
 
-=======
-
-  var model$1 = {
-    preTransformNode: preTransformNode
-  };
-
-  var modules$1 = [
-    klass$1,
-    style$1,
-    model$1
-  ];
-
-  /*  */
-
->>>>>>> master
   function text (el, dir) {
     if (dir.value) {
       addProp(el, 'textContent', ("_s(" + (dir.value) + ")"), dir);
@@ -10994,11 +10726,7 @@
 
   /*  */
 
-<<<<<<< HEAD
   var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function(?:\s+[\w$]+)?\s*\(/;
-=======
-  var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
->>>>>>> master
   var fnInvokeRE = /\([^)]*?\);*$/;
   var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
 
@@ -11077,19 +10805,11 @@
     if (!handler) {
       return 'function(){}'
     }
-<<<<<<< HEAD
 
     if (Array.isArray(handler)) {
       return ("[" + (handler.map(function (handler) { return genHandler(handler); }).join(',')) + "]")
     }
 
-=======
-
-    if (Array.isArray(handler)) {
-      return ("[" + (handler.map(function (handler) { return genHandler(handler); }).join(',')) + "]")
-    }
-
->>>>>>> master
     var isMethodPath = simplePathRE.test(handler.value);
     var isFunctionExpression = fnExpRE.test(handler.value);
     var isFunctionInvocation = simplePathRE.test(handler.value.replace(fnInvokeRE, ''));
@@ -11378,21 +11098,12 @@
 
   function genData$2 (el, state) {
     var data = '{';
-<<<<<<< HEAD
 
     // directives first.
     // directives may mutate the el's other properties before they are generated.
     var dirs = genDirectives(el, state);
     if (dirs) { data += dirs + ','; }
 
-=======
-
-    // directives first.
-    // directives may mutate the el's other properties before they are generated.
-    var dirs = genDirectives(el, state);
-    if (dirs) { data += dirs + ','; }
-
->>>>>>> master
     // key
     if (el.key) {
       data += "key:" + (el.key) + ",";
@@ -11749,7 +11460,6 @@
   }
 
   /*  */
-<<<<<<< HEAD
 
 
 
@@ -11769,27 +11479,6 @@
   // strip strings in expressions
   var stripStringRE = /'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`/g;
 
-=======
-
-
-
-  // these keywords should not appear inside expressions, but operators like
-  // typeof, instanceof and in are allowed
-  var prohibitedKeywordRE = new RegExp('\\b' + (
-    'do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,' +
-    'super,throw,while,yield,delete,export,import,return,switch,default,' +
-    'extends,finally,continue,debugger,function,arguments'
-  ).split(',').join('\\b|\\b') + '\\b');
-
-  // these unary operators should not be used as property/method names
-  var unaryOperatorsRE = new RegExp('\\b' + (
-    'delete,typeof,void'
-  ).split(',').join('\\s*\\([^\\)]*\\)|\\b') + '\\s*\\([^\\)]*\\)');
-
-  // strip strings in expressions
-  var stripStringRE = /'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`/g;
-
->>>>>>> master
   // detect problematic expressions in a template
   function detectErrors (ast, warn) {
     if (ast) {
@@ -11806,11 +11495,8 @@
             var range = node.rawAttrsMap[name];
             if (name === 'v-for') {
               checkFor(node, ("v-for=\"" + value + "\""), warn, range);
-<<<<<<< HEAD
             } else if (name === 'v-slot' || name[0] === '#') {
               checkFunctionParameterExpression(value, (name + "=\"" + value + "\""), warn, range);
-=======
->>>>>>> master
             } else if (onRE.test(name)) {
               checkEvent(value, (name + "=\"" + value + "\""), warn, range);
             } else {
@@ -11826,7 +11512,6 @@
       }
     } else if (node.type === 2) {
       checkExpression(node.expression, node.text, warn, node);
-<<<<<<< HEAD
     }
   }
 
@@ -11896,137 +11581,13 @@
         "invalid function parameter expression: " + (e.message) + " in\n\n" +
         "    " + exp + "\n\n" +
         "  Raw expression: " + (text.trim()) + "\n",
-=======
-    }
-  }
-
-  function checkEvent (exp, text, warn, range) {
-    var stipped = exp.replace(stripStringRE, '');
-    var keywordMatch = stipped.match(unaryOperatorsRE);
-    if (keywordMatch && stipped.charAt(keywordMatch.index - 1) !== '$') {
-      warn(
-        "avoid using JavaScript unary operator as property name: " +
-        "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim()),
->>>>>>> master
         range
       );
     }
-    checkExpression(exp, text, warn, range);
-  }
-
-<<<<<<< HEAD
-  /*  */
-
-  var range = 2;
-
-  function generateCodeFrame (
-    source,
-    start,
-    end
-  ) {
-    if ( start === void 0 ) start = 0;
-    if ( end === void 0 ) end = source.length;
-
-    var lines = source.split(/\r?\n/);
-    var count = 0;
-    var res = [];
-    for (var i = 0; i < lines.length; i++) {
-      count += lines[i].length + 1;
-      if (count >= start) {
-        for (var j = i - range; j <= i + range || end > count; j++) {
-          if (j < 0 || j >= lines.length) { continue }
-          res.push(("" + (j + 1) + (repeat$1(" ", 3 - String(j + 1).length)) + "|  " + (lines[j])));
-          var lineLength = lines[j].length;
-          if (j === i) {
-            // push underline
-            var pad = start - (count - lineLength) + 1;
-            var length = end > count ? lineLength - pad : end - start;
-            res.push("   |  " + repeat$1(" ", pad) + repeat$1("^", length));
-          } else if (j > i) {
-            if (end > count) {
-              var length$1 = Math.min(end - count, lineLength);
-              res.push("   |  " + repeat$1("^", length$1));
-            }
-            count += lineLength + 1;
-          }
-        }
-        break
-      }
-    }
-    return res.join('\n')
-  }
-
-  function repeat$1 (str, n) {
-    var result = '';
-    if (n > 0) {
-      while (true) { // eslint-disable-line
-        if (n & 1) { result += str; }
-        n >>>= 1;
-        if (n <= 0) { break }
-        str += str;
-      }
-    }
-    return result
-=======
-  function checkFor (node, text, warn, range) {
-    checkExpression(node.for || '', text, warn, range);
-    checkIdentifier(node.alias, 'v-for alias', text, warn, range);
-    checkIdentifier(node.iterator1, 'v-for iterator', text, warn, range);
-    checkIdentifier(node.iterator2, 'v-for iterator', text, warn, range);
-  }
-
-  function checkIdentifier (
-    ident,
-    type,
-    text,
-    warn,
-    range
-  ) {
-    if (typeof ident === 'string') {
-      try {
-        new Function(("var " + ident + "=_"));
-      } catch (e) {
-        warn(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())), range);
-      }
-    }
-  }
-
-  function checkExpression (exp, text, warn, range) {
-    try {
-      new Function(("return " + exp));
-    } catch (e) {
-      var keywordMatch = exp.replace(stripStringRE, '').match(prohibitedKeywordRE);
-      if (keywordMatch) {
-        warn(
-          "avoid using JavaScript keyword as property name: " +
-          "\"" + (keywordMatch[0]) + "\"\n  Raw expression: " + (text.trim()),
-          range
-        );
-      } else {
-        warn(
-          "invalid expression: " + (e.message) + " in\n\n" +
-          "    " + exp + "\n\n" +
-          "  Raw expression: " + (text.trim()) + "\n",
-          range
-        );
-      }
-    }
->>>>>>> master
   }
 
   /*  */
 
-<<<<<<< HEAD
-
-
-  function createFunction (code, errors) {
-    try {
-      return new Function(code)
-    } catch (err) {
-      errors.push({ err: err, code: code });
-      return noop
-    }
-=======
   var range = 2;
 
   function generateCodeFrame (
@@ -12090,7 +11651,6 @@
       errors.push({ err: err, code: code });
       return noop
     }
->>>>>>> master
   }
 
   function createCompileToFunctionFn (compile) {
