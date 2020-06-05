@@ -1,107 +1,85 @@
-window.onload = function() {
+if (document.querySelector("#apple-and-kiwi")) {
+  /*  Here's a Vue app */
+  var calendarApp = new Vue({
+    el: "#apple-and-kiwi", //dom node to host our app
+    data: {
+      // the blood and guts of the app
 
-    if( document.querySelector('#apple-and-kiwi') ){
+      comics: [],
+      offset: 0,
+      per_page: 5,
+    },
 
-        /*  Here's a Vue app */
-        var calendarApp = new Vue({
-            el: '#apple-and-kiwi',  //dom node to host our app
-            data: { 	// the blood and guts of the app        
+    computed: {
+      // here's where we can put data that is derived from other, changing variables
+    },
 
-                comics: [],
-                offset: 0,
-                per_page: 5,
+    mounted: function () {
+      // you see this 'var self = this;' a lot in this app, this is because 'this' is screwy in javascript
+      var self = this;
 
-            },
-        
-            computed: { // here's where we can put data that is derived from other, changing variables
+      /**
+       *  This is where we store data that is loaded asynchronously, as in via javascript
+       *
+       *  Important note -> instantiate an empty array in the data section above to represent the inital/default value of
+       *  said async datas
+       *
+       */
 
-            },
+      self.fetchComics();
 
-            mounted: function(){
+      /**
+       *  Here is where everything else that needs to happen as the vue app loads should live
+       *
+       */
+    },
 
-                // you see this 'var self = this;' a lot in this app, this is because 'this' is screwy in javascript
-                var self = this;
-                
-                /**
-                 *  This is where we store data that is loaded asynchronously, as in via javascript
-                 * 
-                 *  Important note -> instantiate an empty array in the data section above to represent the inital/default value of 
-                 *  said async datas
-                 *
-                 */
+    methods: {
+      /* Methods are pretty self explanatory --  they are the functions that handle all the logic of the app*/
 
-                self.fetchComics();
-                
+      fetchComics: function () {
+        var self = this;
+        var per_page = "?per_page=" + self.per_page;
+        var offset = "&offset=" + self.offset;
 
-                /**
-                 *  Here is where everything else that needs to happen as the vue app loads should live          
-                 *
-                 */
+        var url = wpApiSettings.root + "wp/v2/comic" + per_page + offset;
 
-                
+        fetch(url)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (comics) {
+            for (var index = 0; index < comics.length; index++) {
+              var comic = comics[index];
+              self.comics.push(comic);
+            }
+          });
+      },
 
-            },
+      fetchImage: function (id) {
+        var url = wpApiSettings.root + "wp/v2/media/" + id;
 
-            methods: {
-                /* Methods are pretty self explanatory --  they are the functions that handle all the logic of the app*/
-            
+        fetch(url)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (image) {
+            var comic = document.getElementById(id);
+            comic.setAttribute(
+              "src",
+              image.media_details.sizes.medium_large.source_url
+            );
+          });
+      },
 
-                fetchComics: function(){                   
+      loadMoreComics: function () {
+        this.offset += this.per_page;
+        this.fetchComics();
+      },
 
-                    var self = this;		
-                    var per_page = '?per_page=' + self.per_page;
-                    var offset = '&offset=' + self.offset;
-
-                    var url = wpApiSettings.root + 'wp/v2/comic' + per_page + offset;					
-
-                    fetch( url  )
-                        .then(function(response) {
-                            return response.json();
-                        })
-                        .then(function( comics ) {							 
-                            
-                            for (var index = 0; index < comics.length; index++) {
-                                var comic = comics[index];
-                                self.comics.push( comic );                            
-                            }
-
-                        });
-
-                 
-                 
-                    
-                },
-
-                fetchImage: function( id ){                            
-                                              
-                    var url = wpApiSettings.root + 'wp/v2/media/' + id;					
-
-                    fetch( url )
-
-                        .then(function(response) {
-                            return response.json();
-                        })
-                        .then(function( image ) {							                             
-                            var comic = document.getElementById(id);
-                            comic.setAttribute( "src", image.media_details.sizes.medium_large.source_url );                                
-                    });                  
-                },
-
-
-                loadMoreComics: function(){
-                    this.offset += this.per_page;
-                    this.fetchComics();
-                },
-
-                showMenu: function(){                    
-                    jQuery('header.site-header div.main-menu').toggleClass('open');
-                },
-    
-                    
-            } // closes methods
-
-        });	 // closes new vue app
-
-    } // closes document.querySelector
-
-}; // closes window on load
+      showMenu: function () {
+        jQuery("header.site-header div.main-menu").toggleClass("open");
+      },
+    }, // closes methods
+  }); // closes new vue app
+} // closes document.querySelector

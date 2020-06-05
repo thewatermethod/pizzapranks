@@ -5,15 +5,17 @@ require_once 'inc/pizzapranks_custom_post_types.php';
 // Load JS
 function theme_js(){
 
-    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/compiled.js',array('jquery'),'false', false);
+    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/bundle.js',array());
 
     wp_localize_script( 'compiled-js', 'wpApiSettings', array(
       'root' => esc_url_raw( rest_url() ),
-      'nonce' => wp_create_nonce( 'wp_rest' )
+      'nonce' => wp_create_nonce( 'wp_rest' ),
+      'headingFont'=> get_theme_mod('fonts_heading_fonts'),
+      'bodyFont'=> get_theme_mod('fonts_body_fonts')
      ) );   
   
     if( is_comic() ){
-        wp_register_script( 'apple-kiwi', get_template_directory_uri().'/dist/js/apple-and-kiwi.js',array('jquery', 'compiled-js'),'false', true);
+        wp_register_script( 'apple-kiwi', get_template_directory_uri().'/dist/js/apple-and-kiwi.js',array('compiled-js'));
     
         wp_localize_script( 'apple-kiwi', 'wpApiSettings', array(
           'root' => esc_url_raw( rest_url() ),
@@ -23,8 +25,10 @@ function theme_js(){
         wp_enqueue_script( 'apple-kiwi');        
         return;
     } 
-
+    
+   // wp_enqueue_script( 'contributors', get_template_directory_uri().'/js/contributors.js');
     wp_enqueue_script( 'compiled-js');
+    wp_dequeue_script("jquery");
 
 }
 
@@ -271,3 +275,63 @@ function pp_register_meta() {
 }
 
 add_action('rest_api_init', 'pp_register_meta');
+
+
+function pp_add_featured_image_to_contributors() {
+    register_rest_field( 
+        'contributor', 
+        'featured_image', 
+        array( 
+            'get_callback' => 
+                function ( $post_arr ) {
+                    $image_src_arr = wp_get_attachment_image_src( $post_arr['featured_media'], 'medium' );     
+                    return $image_src_arr[0];
+                }
+        ) 
+    );
+}
+
+add_action('rest_api_init', 'pp_add_featured_image_to_contributors');
+
+
+require_once( get_template_directory(  ) . '/inc/customizer.php');
+
+function pizzapranks_head() {
+    
+    
+    $body_font = get_theme_mod( "fonts_body_fonts" );
+    $heading_font = get_theme_mod('fonts_heading_fonts')
+
+    ?>
+
+<style>
+    <?php if( $body_font != "" && $body_font != "false"): ?>
+    body {
+        font-family: "<?php echo $body_font; ?>";
+    }
+    <?php endif;?>
+
+    <?php if( $heading_font  != "" &&  $heading_font != "false"): ?>
+    h1.site-title,
+    .site-title,
+    .site-header,
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: "<?php echo $heading_font; ?>";
+    }
+    <?php endif;?>
+
+    body, header.site-header {
+        background: <?php echo get_theme_mod('background-color'); ?>;
+    }
+
+    header.site-header .site-title a {
+        color: <?php echo get_theme_mod('title-color'); ?>;
+    }
+</style>
+<?php
+}
+
+add_action('wp_head', 'pizzapranks_head');

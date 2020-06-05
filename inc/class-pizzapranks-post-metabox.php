@@ -33,7 +33,7 @@ class PizzaPranksPostMeta {
 
         $selected_template =  get_page_templates( $post );
 
-        if( $selected_template["Pixel Dailies Calendar"] == 'tmpl-calendar.php') {
+        if( isset($selected_template["Pixel Dailies Calendar"]) && $selected_template["Pixel Dailies Calendar"]  == 'tmpl-calendar.php') {
             add_meta_box(
                 'pp-calendar-meta',
                 'Setup Calendar',

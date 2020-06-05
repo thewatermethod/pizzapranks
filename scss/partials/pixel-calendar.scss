@@ -1,0 +1,70 @@
+.calendar-app {
+	background-color: $color1;
+	color: whitesmoke;
+	display: block;
+	margin: auto auto 1em auto;
+}
+
+.calendar-title {
+	text-align: center;
+	width: 100%;
+}
+
+.calendar-main {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.calendar-main .day {
+	border: 1px solid $earth;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+}
+
+.calendar-main .day button {
+	border: 0;
+	background: transparent;
+	height: 100%;
+	outline: 0;
+	width: 100%;
+}
+.calendar-main .day button img {
+	border: 1px solid white;
+}
+
+.calendar-main .day.blank {
+	background: $color4;
+}
+
+.calendar-footer button {
+	background: $color2;
+	border: 0;
+	color: black;
+	cursor: pointer;
+	margin: 0;
+	outline: 0;
+	padding: 0.5em;
+	width: 50%;
+}
+
+.calendar-footer button:first-child {
+	background: $color3;
+}
+
+.calendar-modal {
+	align-items: center;
+	background: rgba(1, 1, 1, 0.76);
+	min-height: 100vh;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	z-index: 3;
+}
+
+.calendar-modal .button-wrapper button {
+	font-size: 24px;
+	width: 250px;
+}
