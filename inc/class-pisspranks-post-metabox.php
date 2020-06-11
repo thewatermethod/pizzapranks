@@ -1,6 +1,6 @@
 <?php
 
-class PizzaPranksPostMeta {
+class pissPranksPostMeta {
 
     public function __construct() {
 
@@ -25,7 +25,7 @@ class PizzaPranksPostMeta {
         add_meta_box(
             'pp-games-meta',
             'Games Info',
-            array( $this, 'render_pizzapranks_metabox' ),
+            array( $this, 'render_pisspranks_metabox' ),
             'post',
             'normal',
             'low'
@@ -37,7 +37,7 @@ class PizzaPranksPostMeta {
             add_meta_box(
                 'pp-calendar-meta',
                 'Setup Calendar',
-                array( $this, 'render_pizzapranks_calendar_metabox' ),
+                array( $this, 'render_pisspranks_calendar_metabox' ),
                 'page',
                 'normal',
                 'low'
@@ -47,10 +47,10 @@ class PizzaPranksPostMeta {
 
     }
 
-    public function render_pizzapranks_calendar_metabox( $post ){ 
+    public function render_pisspranks_calendar_metabox( $post ){ 
 
         // Add nonce for security and authentication.
-        wp_nonce_field( 'pizza_pranks_save_meta_action', 'pizza_pranks_save_meta_action_nonce' );
+        wp_nonce_field( 'piss_pranks_save_meta_action', 'piss_pranks_save_meta_action_nonce' );
         $calendar_category = get_post_meta( $post->ID, 'calendar_category', true ); 
 
         ?>
@@ -60,10 +60,10 @@ class PizzaPranksPostMeta {
         
     }
 
-    public function render_pizzapranks_metabox( $post ) {
+    public function render_pisspranks_metabox( $post ) {
 
         // Add nonce for security and authentication.
-        wp_nonce_field( 'pizza_pranks_save_meta_action', 'pizza_pranks_save_meta_action_nonce' );
+        wp_nonce_field( 'piss_pranks_save_meta_action', 'piss_pranks_save_meta_action_nonce' );
 
         // Retrieve an existing value from the database.
         $download_link = get_post_meta( $post->ID, 'download_link', true );
@@ -96,8 +96,8 @@ class PizzaPranksPostMeta {
     public function save_metabox( $post_id, $post ) {
 
         // Add nonce for security and authentication.
-        $nonce_name   = isset( $_POST['pizza_pranks_save_meta_action_nonce'] ) ? $_POST['pizza_pranks_save_meta_action_nonce'] : '';
-        $nonce_action = 'pizza_pranks_save_meta_action';
+        $nonce_name   = isset( $_POST['piss_pranks_save_meta_action_nonce'] ) ? $_POST['piss_pranks_save_meta_action_nonce'] : '';
+        $nonce_action = 'piss_pranks_save_meta_action';
 
         // Check if a nonce is set.
         if ( ! isset( $nonce_name ) )
@@ -121,4 +121,4 @@ class PizzaPranksPostMeta {
 
 }
 
-new PizzaPranksPostMeta;
+new pissPranksPostMeta;

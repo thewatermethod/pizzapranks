@@ -2,7 +2,7 @@
 
 
 
-function pizzapranks_customizer( $wp_customize ) {
+function pisspranks_customizer( $wp_customize ) {
 
 
     /** All our settings */
@@ -30,14 +30,14 @@ function pizzapranks_customizer( $wp_customize ) {
 
     /** Fonts Section */
 
-    $wp_customize->add_section( 'pizzapranks_fonts' , array(
+    $wp_customize->add_section( 'pisspranks_fonts' , array(
         'title'      => 'Fonts',
         'priority'   => 30,
     ) );
     
     $wp_customize->add_control( 'google_fonts_api_key', array(
 		'label'    => 'Google Fonts API Key',
-		'section'  => 'pizzapranks_fonts',
+		'section'  => 'pisspranks_fonts',
 		'type'     => 'text',
 		'priority' => 1
      ) );
@@ -46,14 +46,14 @@ function pizzapranks_customizer( $wp_customize ) {
     if( get_theme_mod( 'google_fonts_api_key' ) != "" ) {
         $wp_customize->add_control( 'fonts_heading_fonts', array(
             'label'    => 'Heading Font',
-            'section'  => 'pizzapranks_fonts',
+            'section'  => 'pisspranks_fonts',
             'type'     => 'select',
             'priority' => 2,
             'choices'  => get_google_fonts()
          ) );
          $wp_customize->add_control( 'fonts_body_fonts', array(
             'label'    => 'Body Font',
-            'section'  => 'pizzapranks_fonts',
+            'section'  => 'pisspranks_fonts',
             'type'     => 'select',
             'priority' => 3,
             'choices'  => get_google_fonts()
@@ -63,7 +63,7 @@ function pizzapranks_customizer( $wp_customize ) {
 
     /** Colors section */
 
-    $wp_customize->add_section( 'pizzapranks_colors' , array(
+    $wp_customize->add_section( 'pisspranks_colors' , array(
         'title'      => 'Colors',
         'priority'   => 30,
     ) );
@@ -73,7 +73,7 @@ function pizzapranks_customizer( $wp_customize ) {
         'title-color', 
         array(
             'label'      => "Title Color",
-            'section'    => 'pizzapranks_colors',
+            'section'    => 'pisspranks_colors',
             'settings'   => 'title-color',
             'priority'   => 2
         )
@@ -85,7 +85,7 @@ function pizzapranks_customizer( $wp_customize ) {
         'background-color', 
         array(
             'label'      => 'Background Color',
-            'section'    => 'pizzapranks_colors',
+            'section'    => 'pisspranks_colors',
             'settings'   => 'background-color',
             'priority'   => 1
         ) ) 
@@ -95,7 +95,7 @@ function pizzapranks_customizer( $wp_customize ) {
 
 
 
-add_action( 'customize_register', 'pizzapranks_customizer' );
+add_action( 'customize_register', 'pisspranks_customizer' );
 
 function get_google_fonts() {
 
@@ -105,10 +105,10 @@ function get_google_fonts() {
 
     if( $api_key != "") {       
 
-        if ( false === ( $response_body = get_transient( 'pizzapranks_google_fonts' ) ) ) {
+        if ( false === ( $response_body = get_transient( 'pisspranks_google_fonts' ) ) ) {
             $response = wp_remote_get("https://www.googleapis.com/webfonts/v1/webfonts?key=" . $api_key);
             $response_body = wp_remote_retrieve_body( $response );
-            set_transient( 'pizzapranks_google_fonts', $response_body );
+            set_transient( 'pisspranks_google_fonts', $response_body );
         }
 
         $response_body = json_decode($response_body);

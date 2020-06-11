@@ -14,7 +14,7 @@
 	<?php wp_head(); ?>
 </head>
 	
-	<body <?php body_class('pizzapranks');?>>
+	<body <?php body_class('pisspranks');?>>
 
 
 	<header class="site-header">

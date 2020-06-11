@@ -1,6 +1,6 @@
 <?php
 
-require_once 'inc/pizzapranks_custom_post_types.php';
+require_once 'inc/pisspranks_custom_post_types.php';
 
 // Load JS
 function theme_js(){
@@ -42,7 +42,7 @@ function theme_styles() {
 }
 
 // Register widgets
-function pizzapranks_widgets_init() {
+function pisspranks_widgets_init() {
   register_sidebar( array(
     'name'          =>  'Sidebar Left',
     'id'            =>  'sidebar-1',
@@ -62,7 +62,7 @@ function pizzapranks_widgets_init() {
     'after_title'   => '</h2>',
   ) );
 }
-add_action( 'widgets_init', 'pizzapranks_widgets_init' );
+add_action( 'widgets_init', 'pisspranks_widgets_init' );
 
 function the_oldest_comic(){
     $args = array(
@@ -173,10 +173,7 @@ function is_comic(){
 }
 
 
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
+
 
 function add_async_attribute($tag, $handle) {
     if ( 'compiled-js' !== $handle )
@@ -190,7 +187,7 @@ add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
  * Adds the meta box to the posts (download links, etc)
  */
 
-require get_template_directory() . '/inc/class-pizzapranks-post-metabox.php';
+require get_template_directory() . '/inc/class-pisspranks-post-metabox.php';
 
 function pp_add_categories_to_attachments() {
     register_taxonomy_for_object_type( 'category', 'attachment' );
@@ -296,7 +293,7 @@ add_action('rest_api_init', 'pp_add_featured_image_to_contributors');
 
 require_once( get_template_directory(  ) . '/inc/customizer.php');
 
-function pizzapranks_head() {
+function pisspranks_head() {
     
     
     $body_font = get_theme_mod( "fonts_body_fonts" );
@@ -334,4 +331,4 @@ function pizzapranks_head() {
 <?php
 }
 
-add_action('wp_head', 'pizzapranks_head');
+add_action('wp_head', 'pisspranks_head');

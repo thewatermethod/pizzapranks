@@ -1,8 +1,8 @@
 <?php
 
-add_action( 'init', 'pizzapranks_post_types' );
+add_action( 'init', 'pisspranks_post_types' );
 
-function pizzapranks_post_types() {
+function pisspranks_post_types() {
 
 	$labels = array(
 		"name" => __( 'Comics', '' ),
