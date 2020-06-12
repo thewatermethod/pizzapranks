@@ -5,7 +5,6 @@ const loadContributors = () => {
 
   contributors.forEach((contributor) => {
     fetchContributors(contributor.dataset).then((response) => {
-      console.log(response.slice(0, 1));
       buildContributors(response, 0, contributor);
     });
   });
@@ -19,7 +18,7 @@ const buildContributors = (response, startingPoint, target) => {
   addContributors(contributors, target);
 
   // check if there are more
-  if (contributors[startingPoint + 2]) {
+  if (response[startingPoint + 2]) {
     // advance indexes, repeat
     buildContributors(response, startingPoint + 2, target);
   }
