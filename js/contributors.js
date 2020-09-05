@@ -25,7 +25,15 @@ const buildContributors = (response, startingPoint, target) => {
 };
 
 const fetchContributors = async (dataset) => {
-  const response = await fetch(dataset.rest);
+  let rest = dataset.rest;
+
+  console.log(rest);
+
+  if (rest.indexOf("undefined") !== -1) {
+    rest = rest.replace("undefined", "title");
+  }
+
+  const response = await fetch(rest);
   return response.json();
 };
 
@@ -45,7 +53,9 @@ const addContributors = (response, target) => {
         </div>`;
   });
 
-  target.innerHTML += `<div class="wp-block-columns">${contributors}</div>`;
+  target.innerHTML += `<div class="wp-block-columns">${contributors.join(
+    ""
+  )}</div>`;
 };
 
 export {loadContributors};

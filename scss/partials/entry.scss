@@ -1,0 +1,21 @@
+$mx: 600px;
+
+%space-around {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $mx;
+}
+
+.entry-header {
+  @extend %space-around;
+}
+
+.entry-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    @extend %space-around;
+  }
+}

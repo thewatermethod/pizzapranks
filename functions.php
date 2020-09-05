@@ -5,7 +5,7 @@ require_once 'inc/pisspranks_custom_post_types.php';
 // Load JS
 function theme_js(){
 
-    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/bundle.js',array());
+    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/bundle.js',array(), '1.1', true);
 
     wp_localize_script( 'compiled-js', 'wpApiSettings', array(
       'root' => esc_url_raw( rest_url() ),
@@ -26,7 +26,6 @@ function theme_js(){
         return;
     } 
     
-   // wp_enqueue_script( 'contributors', get_template_directory_uri().'/js/contributors.js');
     wp_enqueue_script( 'compiled-js');
     wp_dequeue_script("jquery");
 
@@ -35,9 +34,8 @@ function theme_js(){
 // Load CSS
 function theme_styles() {    
  
-    wp_enqueue_style('compiled', get_template_directory_uri().'/dist/css/compiled.css');     
-      
-    //todo - editorstyles.css
+    wp_enqueue_style('compiled', get_template_directory_uri().'/dist/css/compiled.css');           
+
 
 }
 
