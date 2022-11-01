@@ -18,7 +18,7 @@
     "css-loader": "^3.5.3",
     "cssnano": "^3.10.0",
     "fs": "0.0.1-security",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-clean": "^0.4.0",
