@@ -1,7 +1,6 @@
-import {loadContributors} from "./contributors";
+import { loadContributors } from "./contributors";
 
 var WebFont = require("webfontloader");
-import "../scss/style.scss";
 
 function loadFonts(families) {
   WebFont.load({
@@ -47,6 +46,7 @@ const menuToggle = document.querySelector("#menuToggle");
 menuToggle.addEventListener("click", (e) => {
   e.stopPropagation();
   menuToggle.classList.toggle("toggled");
+  headerSiteHeader.classList.toggle("menu-open");
   headerSiteHeader.querySelector(".main").classList.toggle("open");
 });
 

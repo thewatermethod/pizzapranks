@@ -215,6 +215,10 @@ header.site-header {
   z-index: 2;
 }
 
+header.site-header.menu-open {
+  position: relative;
+}
+
 @media (max-width: 600px) {
   header.site-header {
     justify-content: flex-start;
@@ -328,8 +332,7 @@ a:focus {
 header.site-header div.main {
   background: rgba(1, 1, 1, 0.93);
   left: -900vw;
-  min-height: 100vh;
-  position: fixed;
+  position: absolute;
   top: 0;
   transition: all 0.5s ease-in-out;
   width: 100vw;
@@ -347,7 +350,7 @@ header.site-header div.main.open {
 
 header.site-header div.main ul {
   display: block;
-  margin: 2em auto;
+  margin: 1em auto 0;
   width: 50%;
 }
 header.site-header div.main ul li {

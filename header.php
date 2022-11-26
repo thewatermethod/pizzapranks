@@ -33,9 +33,11 @@
 			<div class="menui bottom-menu"></div>
 		</button>
 		
-		<div class="main"><?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu h1' ) ); ?><div>	
-		
+		<div class="main">
+		<?php wp_nav_menu( array( 'theme_location' => 'very-top-menu', 'container_class' => 'main-menu h1' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu h1' ) ); ?>
 
+		</div>
 	</header>
 
 	<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu h3' ) ); ?>
