@@ -25,17 +25,17 @@
 			<p class="site-title"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></p>			
 		<?php endif; ?>
 		
+		<?php wp_nav_menu( array( 'theme_location' => 'very-top-menu', 'container_class' => 'very-top-menu' ) ); ?>
 
 		<button id="menuToggle" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 			<div class="menui top-menu"></div>
 			<div class="menui mid-menu"></div>
 			<div class="menui bottom-menu"></div>
 		</button>
-	
+		
 		<div class="main"><?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu h1' ) ); ?><div>	
 		
-	
-	
+
 	</header>
 
 	<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu h3' ) ); ?>

@@ -33,10 +33,7 @@ function theme_js(){
 
 // Load CSS
 function theme_styles() {    
- 
-    wp_enqueue_style('compiled', get_template_directory_uri().'/dist/css/compiled.css');           
-
-
+    wp_enqueue_style('compiled', get_template_directory_uri().'/style.css');
 }
 
 // Register widgets
@@ -112,7 +109,8 @@ function register_my_menus() {
 		array(
             'header-menu' => 'Header Menu',
             'main-menu' => 'Main Menu',
-			'links-menu' => 'Footer Links' 
+			'links-menu' => 'Footer Links',
+            'very-top-menu' => 'Very Top Menu'
 		)	
 	);
 }
