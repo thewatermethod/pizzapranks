@@ -5,29 +5,25 @@ require_once 'inc/pisspranks_custom_post_types.php';
 // Load JS
 function theme_js(){
 
-    wp_register_script( 'compiled-js', get_template_directory_uri().'/dist/js/bundle.js',array(), '1.1', true);
+    wp_enqueue_script( 
+        'webfont-loader', 
+        'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', 
+        array(),
+        '1.6.26',
+        true
+    );
+    wp_register_script( 'theme-js', get_template_directory_uri().'/js/main.js',array('webfont-loader'), '1.1', true);
 
-    wp_localize_script( 'compiled-js', 'wpApiSettings', array(
+    wp_localize_script( 'theme-js', 'wpApiSettings', array(
       'root' => esc_url_raw( rest_url() ),
       'nonce' => wp_create_nonce( 'wp_rest' ),
       'headingFont'=> get_theme_mod('fonts_heading_fonts'),
       'bodyFont'=> get_theme_mod('fonts_body_fonts')
      ) );   
   
-    if( is_comic() ){
-        wp_register_script( 'apple-kiwi', get_template_directory_uri().'/dist/js/apple-and-kiwi.js',array('compiled-js'));
     
-        wp_localize_script( 'apple-kiwi', 'wpApiSettings', array(
-          'root' => esc_url_raw( rest_url() ),
-          'nonce' => wp_create_nonce( 'wp_rest' )
-         ) );
-      
-        wp_enqueue_script( 'apple-kiwi');        
-        return;
-    } 
-    
-    wp_enqueue_script( 'compiled-js');
-    wp_dequeue_script("jquery");
+    wp_enqueue_script( 'theme-js');
+    wp_dequeue_script( 'jquery' );
 
 }
 
