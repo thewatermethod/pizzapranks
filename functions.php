@@ -107,7 +107,6 @@ function the_random_comic(){
 function register_my_menus() {
 	register_nav_menus(
 		array(
-            'header-menu' => 'Header Menu',
             'main-menu' => 'Main Menu',
 			'links-menu' => 'Footer Links',
             'very-top-menu' => 'Very Top Menu'
