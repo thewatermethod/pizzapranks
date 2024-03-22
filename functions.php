@@ -4,26 +4,12 @@ require_once 'inc/pisspranks_custom_post_types.php';
 
 // Load JS
 function theme_js(){
-
-    wp_enqueue_script( 
-        'webfont-loader', 
-        'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', 
-        array(),
-        '1.6.26',
-        true
-    );
-    wp_register_script( 'theme-js', get_template_directory_uri().'/js/main.js',array('webfont-loader'), '1.1', true);
-
     wp_localize_script( 'theme-js', 'wpApiSettings', array(
       'root' => esc_url_raw( rest_url() ),
       'nonce' => wp_create_nonce( 'wp_rest' ),
-      'headingFont'=> get_theme_mod('fonts_heading_fonts'),
-      'bodyFont'=> get_theme_mod('fonts_body_fonts')
-     ) );   
-  
-    
+     ) );     
+    wp_register_script( 'theme-js', get_template_directory_uri().'/js/main.js', array(), '1.2', true);
     wp_enqueue_script( 'theme-js');
-    wp_dequeue_script( 'jquery' );
 
 }
 
@@ -55,50 +41,6 @@ function pisspranks_widgets_init() {
 }
 add_action( 'widgets_init', 'pisspranks_widgets_init' );
 
-function the_oldest_comic(){
-    $args = array(
-        'numberposts'     => 1,
-        'offset'          => 0,
-        'orderby'         => 'post_date',
-        'order'           => 'ASC',
-        'post_type'       => 'comic',
-        'post_status'     => 'publish' );
-    $comics = get_posts( $args );
-    $permalink = get_permalink($comics[0]->ID);
-
-    echo $permalink;
-}
-
-function the_newest_comic(){
-
-    $args = array(
-        'numberposts'     => 1,
-        'offset'          => 0,
-        'orderby'         => 'post_date',
-        'order'           => 'DESC',
-        'post_type'       => 'comic',
-        'post_status'     => 'publish' );
-    $myposts = get_posts( $args );
-    $permalink = get_permalink($myposts[0]->ID);
-    echo $permalink;
-}
-
-	
-
-function the_random_comic(){
-
-    $args = array(
-        'numberposts'     => 1,
-        'offset'          => 0,
-        'orderby'         => 'rand',
-        'order'           => 'DESC',
-        'post_type'       => 'comic',
-        'post_status'     => 'publish' );
-    $myposts = get_posts( $args );
-    $permalink = get_permalink($myposts[0]->ID);
-    echo $permalink;
-}
-
 //Add menu support
 function register_my_menus() {
 	register_nav_menus(
@@ -114,71 +56,10 @@ add_action('wp_enqueue_scripts', 'theme_styles');
 add_action('wp_enqueue_scripts', 'theme_js');
 add_action( 'init', 'register_my_menus' );
 
-
-/**
- *  Some stuff to make the comics nav links
- * 
- */
-
-function the_next_comic(){
-
-    $the_next_comic = get_adjacent_post(false, '', false);
-
-    if( $the_next_comic == '' ){
-        return;
-    }
-    
-    $permalink = get_the_permalink( $the_next_comic );
-
-    if( $permalink ){ ?>
-        <li><a href="<?php echo $permalink;?>">Next Comic</a></li>
-    <?php
-    }
-
-}
-
-function the_previous_comic(){
-    $the_previous_comic = get_adjacent_post(false, '', true);
-    
-    if( $the_previous_comic == '' ){
-        return;
-    }
-
-    $permalink = get_the_permalink( $the_previous_comic );
-    
-    if( $permalink ){ ?>
-        <li><a href="<?php echo $permalink;?>">Previous Comic</a></li>
-    <?php
-    }
-}
-
-/**
- * A little helper to see if we are on a comics page
- */
-
-function is_comic(){
-    if( is_post_type_archive( 'comic' ) || get_post_type() == 'comic' ){
-        return true;
-    }
-    return false;
-}
-
-
-
-
-function add_async_attribute($tag, $handle) {
-    if ( 'compiled-js' !== $handle )
-        return $tag;
-    return str_replace( ' src', ' async="async" src', $tag );
-}
-
-add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
-
 /**
  * Adds the meta box to the posts (download links, etc)
  */
 
-require get_template_directory() . '/inc/class-pisspranks-post-metabox.php';
 
 function pp_add_categories_to_attachments() {
     register_taxonomy_for_object_type( 'category', 'attachment' );
@@ -211,60 +92,6 @@ add_theme_support( 'html5', array(
     'caption',
 ) );
 
-
-// some light cleanup
-
-function pp_after_setup_theme() {
-    // add a custom image size for the calendar        
-    add_image_size( 'calendar', 32, 32, false );
-}
-
-add_action('after_setup_theme', 'pp_after_setup_theme');
-
-
-/**
- *
- * @param $form_fields array, fields to include in attachment form
- * @param $post object, attachment record in database
- * @return $form_fields, modified form fields
- */
-  
-function pp_attachment_date_changer( $form_fields, $post ) {
-    $form_fields['pp_upload_date'] = array(
-        'label' => 'New Upload Date',
-        'input' => 'text',
-        'value' => get_post_meta( $post->ID, 'pp_upload_date', true ),
-        'helps' => 'Date formatted like "MM/DD/YYYY"',
-    );
- 
-    return $form_fields;
-}
- 
-add_filter( 'attachment_fields_to_edit', 'pp_attachment_date_changer', 10, 2 );
- 
-/**
- *
- * @param $post array, the post data for database
- * @param $attachment array, attachment fields from $_POST form
- * @return $post array, modified post data
- */
- 
-function pp_attachment_field_date_save( $post, $attachment ) {
-    if( isset( $attachment['pp_upload_date'] ) )
-        update_post_meta( $post['ID'],'pp_upload_date', $attachment['pp_upload_date'] );
- 
-    return $post;
-}
- 
-add_filter( 'attachment_fields_to_save', 'pp_attachment_field_date_save', 10, 2 );
-
-function pp_register_meta() {
-    register_meta( 'post', 'pp_upload_date', array('show_in_rest'=> true, 'single'=>true), null );
-}
-
-add_action('rest_api_init', 'pp_register_meta');
-
-
 function pp_add_featured_image_to_contributors() {
     register_rest_field( 
         'contributor', 
@@ -281,45 +108,3 @@ function pp_add_featured_image_to_contributors() {
 
 add_action('rest_api_init', 'pp_add_featured_image_to_contributors');
 
-
-require_once( get_template_directory(  ) . '/inc/customizer.php');
-
-function pisspranks_head() {
-    
-    
-    $body_font = get_theme_mod( "fonts_body_fonts" );
-    $heading_font = get_theme_mod('fonts_heading_fonts')
-
-    ?>
-
-<style>
-    <?php if( $body_font != "" && $body_font != "false"): ?>
-    body {
-        font-family: "<?php echo $body_font; ?>";
-    }
-    <?php endif;?>
-
-    <?php if( $heading_font  != "" &&  $heading_font != "false"): ?>
-    h1.site-title,
-    .site-title,
-    .site-header,
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: "<?php echo $heading_font; ?>";
-    }
-    <?php endif;?>
-
-    body, header.site-header {
-        background: <?php echo get_theme_mod('background-color'); ?>;
-    }
-
-    header.site-header .site-title a {
-        color: <?php echo get_theme_mod('title-color'); ?>;
-    }
-</style>
-<?php
-}
-
-add_action('wp_head', 'pisspranks_head');

@@ -1,10 +1,4 @@
 <!doctype html>
-<?php 
-
-	$is_comic = is_comic();
-
-?>
-
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -15,7 +9,6 @@
 </head>
 	
 	<body <?php body_class('pisspranks');?>>
-
 
 	<header class="site-header">
 		
@@ -31,13 +24,10 @@
 			<div class="menui top-menu"></div>
 			<div class="menui mid-menu"></div>
 			<div class="menui bottom-menu"></div>
-		</button>
+		</button>	
 		
-		<div class="main">
-		<?php wp_nav_menu( array( 'theme_location' => 'very-top-menu', 'container_class' => 'main-menu h1' ) ); ?>
-			<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu h1' ) ); ?>
-
-		</div>
+		<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu' ) ); ?>
+		
 	</header>
 
-	<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu h3' ) ); ?>
+
