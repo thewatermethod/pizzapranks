@@ -3,10 +3,6 @@
     "themes": [
         "."
     ],
-    "config": { 
-        "JETPACK_DEV_DEBUG": true,
-        "WCPAY_DEV_MODE": true 
-    },
     "plugins": [
         "https://downloads.wordpress.org/plugin/woocommerce.8.7.0.zip",
         "https://downloads.wordpress.org/plugin/woocommerce-paypal-payments.2.6.0.zip",
